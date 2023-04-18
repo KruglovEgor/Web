@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#rectangle {
+    width: 400px;
+    height: 160px;
+    background-color: white;
+    margin-bottom: 20px;
+    border: 5px solid black;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.color-btn {
+    width: 100px;
+    height: 50px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#red-btn {
+    background-color: red;
+}
+
+#blue-btn {
+    background-color: blue;
+}
+
+#green-btn {
+    background-color: green;
+}
+
+#yellow-btn {
+    background-color: yellow;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 24px;
+}
