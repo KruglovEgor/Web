@@ -106,8 +106,8 @@ function EnableAllStuffForSettingParameters(){
 
 function Start(){
     rightClicks = 0; wrongClicks = 0;
-    //const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
-    const  timeOfTest = 0.5 * secondsInUnitOfMeasurement;
+    const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
+    //const  timeOfTest = 0.5 * secondsInUnitOfMeasurement;
     const startVelocities = [];
     for(let i = 0; i < velocitySliders.length; i++){
         startVelocities.push(velocitySliders.item(i).value*speedForOneRotationPerMinute)
