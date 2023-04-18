@@ -48,8 +48,8 @@ const offsetXZone = 0.08;
 const radius = bigCircle.offsetWidth/2 * 69/70;
 const center_x = bigCircle.offsetLeft + bigCircle.offsetWidth/2;
 const center_y = bigCircle.offsetTop + bigCircle.offsetHeight/2;
-const leftZone = center_x - smallCircle.offsetWidth/2  - stick.offsetWidth/2 - radius*offsetXZone;
-const rightZone = center_x + smallCircle.offsetWidth/2 +stick.offsetWidth/2 + radius*offsetXZone;
+// const leftZone = center_x - smallCircle.offsetWidth/2  - stick.offsetWidth/2 - radius*offsetXZone;
+// const rightZone = center_x + smallCircle.offsetWidth/2 +stick.offsetWidth/2 + radius*offsetXZone;
 
 
 
@@ -80,10 +80,10 @@ function EnableAllStuffForSettingParameters(){
 }
 
 
-let rightClicks = 0;
-let wrongClicks = 0;
+let sumOfDistanceFromStick = 0;
+let countOfClicks = 0;
 function Start(){
-	rightClicks = 0; wrongClicks = 0;
+	sumOfDistanceFromStick = 0; countOfClicks = 0;
 	const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
 	//const timeOfTest = 0.25 * secondsInUnitOfMeasurement;
 	const startVelocity = velocitySlider.value * speedForOneRotationPerMinute;
@@ -110,7 +110,7 @@ function Start(){
 
 	setTimeout(function (){
 		clearInterval(updatePosition)
-		if(needResultsButton.checked) {result.textContent = `Вы успели нажать на кнопку в нужный момент ${rightClicks}  раз(a), промохнулись ${wrongClicks} раз(а). Всего кружок сделал ${allRotationsCount.toFixed(2)} оборот(а/ов)`;}
+		if(needResultsButton.checked) {result.textContent = `Вы успели нажать на кнопку в нужный момент ${sumOfDistanceFromStick}  раз(a), промохнулись ${countOfClicks} раз(а). Всего кружок сделал ${allRotationsCount.toFixed(2)} оборот(а/ов)`;}
 		triggerButton.disabled = true;
 		startButton.disabled = false;
 		EnableAllStuffForSettingParameters();
@@ -128,12 +128,14 @@ function Rotation(deltaTime, currentVelocity){
 
 
 function Trigger(){
+	//check if it's surely center of small circle
 	const x = smallCircle.offsetLeft;
-	if((leftZone <= x) && (x <= rightZone) && (smallCircle.offsetTop<center_y)){
-		rightClicks += 1;
+	const y = smallCircle.offsetTop;
+	let sign = 1;
+	//check if it's working in right order
+	if(x>center_x){
+		sign = -1
 	}
-	else wrongClicks += 1;
-	// console.log('x ', x);
-	// console.log('left ', leftZone);
-	// console.log('right ', rightZone)
+	sumOfDistanceFromStick += sign*(Math.sqrt((x-center_x)**2 + (y-center_y)**2));
+	countOfClicks += 1;
 }
