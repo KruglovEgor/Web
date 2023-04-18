@@ -16,6 +16,8 @@
         <input type="range" min="2" max="45" step="1" value="2" id="time-slider">
         <p>Value: <span class="time-value" id="time-value">2</span> minutes</p>
 
+        <div class="separator" id="separator-1">Choose parameters for the 1st circle</div>
+
         <label for="velocity-slider1">Choose the velocity: </label>
         <input type="range" min="1" max="60" step="1" value="1" class="velocity-slider" id="velocity-slider1">
         <p>Value: <span class="velocity-value" id="velocity-value1">1</span> rotations per minute</p>
@@ -42,6 +44,9 @@
 
   <div class="params" id="param2">
     <div class="slider-container">
+
+      <div class="separator" id="separator-2">Choose parameters for the 2nd circle</div>
+
       <label for="velocity-slider2">Choose the velocity: </label>
       <input type="range" min="1" max="60" step="1" value="1" class="velocity-slider" id="velocity-slider2">
       <p>Value: <span class="velocity-value" id="velocity-value2">1</span> rotations per minute</p>
@@ -68,6 +73,9 @@
 
   <div class="params" id="param3">
     <div class="slider-container">
+
+      <div class="separator" id="separator-3">Choose parameters for the 3rd circle</div>
+
       <label for="velocity-slider3">Choose the velocity: </label>
       <input type="range" min="1" max="60" step="1" value="1" class="velocity-slider" id="velocity-slider3">
       <p>Value: <span class="velocity-value" id="velocity-value3">1</span> rotations per minute</p>
@@ -91,7 +99,7 @@
     </div>
   </div>
   <div class="params">
-  <div class="radio-container">
+  <div class="radio-container" id="radio-results">
     <label>Do you need results: </label>
     <label for="need-results">Yes</label>
     <input type="radio" class="need-results" id="need-results" name="need-results-or-no3" checked>
@@ -125,9 +133,9 @@
 
   <div class="buttons">
     <button id="start-btn" class="button" onclick="Start();">Start</button>
-    <button id="trigger-btn1" class="trigger-button" onclick="Trigger();">1</button>
-    <button id="trigger-btn2" class="trigger-button" onclick="Trigger();">2</button>
-    <button id="trigger-btn3" class="trigger-button" onclick="Trigger();">3</button>
+    <button id="trigger-btn1" class="trigger-button" onclick="Trigger(0);">1</button>
+    <button id="trigger-btn2" class="trigger-button" onclick="Trigger(1);">2</button>
+    <button id="trigger-btn3" class="trigger-button" onclick="Trigger(2);">3</button>
   </div>
 
   <div id="result"></div>

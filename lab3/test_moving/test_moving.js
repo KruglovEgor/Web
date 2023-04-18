@@ -124,7 +124,6 @@ function Trigger(){
 	const x = smallCircle.offsetLeft;
 	const y = smallCircle.offsetTop;
 	let sign = 1;
-	//check if it's working in right order
 	if(x>center_x){
 		sign = -1
 	}

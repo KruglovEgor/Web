@@ -57,21 +57,22 @@ const secondsInUnitOfMeasurement = 60*1000;
 //for making test easier we may add these:
 const offsetXZone = 0.08;
 
-let rightClicks = 0;
-let wrongClicks = 0;
+let sumsOfDistanceFromStick = [];
+let countsOfClicks = [];
+
+for (let i =0; i<bigCircles.length; i++){
+    sumsOfDistanceFromStick[i] = 0;
+    countsOfClicks[i]=0;
+}
 
 //*69/70 cause border also is in radius (width=35vw border=0.5vw)
 const radius = bigCircles.item(0).offsetWidth/2 * 39/40;
 const centers_x = [];
-const leftZones = [];
-const rightZones = [];
+const centers_y = [];
 for(let i = 0; i<bigCircles.length; i++){
     centers_x.push(bigCircles.item(i).offsetLeft + bigCircles.item(i).offsetWidth/2);
-    leftZones.push(centers_x[i] - smallCircles.item(i).offsetWidth/2 - sticks.item(i).offsetWidth/2 - radius*offsetXZone);
-    rightZones.push(centers_x[i] + smallCircles.item(i).offsetWidth/2 + sticks.item(i).offsetWidth/2 + radius*offsetXZone)
+    centers_y.push(bigCircles.item(i).offsetTop + bigCircles.item(i).offsetHeight/2);
 }
-const center_y = bigCircles.item(0).offsetTop + bigCircles.item(0).offsetHeight/2;
-
 
 
 const speedForOneRotationPerMinute = (2*Math.PI*radius) / secondsInUnitOfMeasurement /(180/Math.PI);
@@ -79,8 +80,6 @@ const speedForOneRotationPerMinute = (2*Math.PI*radius) / secondsInUnitOfMeasure
 const frequency = 40;
 //range of random acceleration
 const rangeOfRandomAcceleration = 10;
-//for adding some more time after end:
-const afterEndGap = 2;
 
 
 function DisableAllStuffForSettingParameters(){
@@ -105,7 +104,10 @@ function EnableAllStuffForSettingParameters(){
 
 
 function Start(){
-    rightClicks = 0; wrongClicks = 0;
+    for (let i =0; i<bigCircles.length; i++){
+        sumsOfDistanceFromStick[i] = 0;
+        countsOfClicks[i]=0;
+    }
     //const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
     const  timeOfTest = 0.5 * secondsInUnitOfMeasurement;
     const startVelocities = [];
@@ -159,16 +161,21 @@ function Start(){
 function Rotation(deltaTime, currentVelocity, id){
     const angle = ((currentVelocity*deltaTime*180)/(Math.PI*radius)) % 360 ;
     const x = centers_x[id] + radius * Math.sin(angle);
-    const y = center_y - radius * Math.cos(angle);
+    const y = centers_y[id] - radius * Math.cos(angle);
     smallCircles[id].style.left = x + 'px';
     smallCircles[id].style.top = y + 'px';
 }
 
 
 function Trigger(id){
+    //check if it's surely center of small circle
     const x = smallCircles[id].offsetLeft;
-    if((leftZones[id] <= x) && (x <= rightZones[id]) && (smallCircles[id].offsetTop<center_y)){
-        rightClicks += 1;
+    const y = smallCircles[id].offsetTop;
+    let sign = 1;
+    if(x>centers_x[id]){
+        sign = -1
     }
-    else wrongClicks += 1;
+    sumsOfDistanceFromStick[id] += sign*(Math.sqrt((x-centers_x[id])**2 + (y-centers_y[id])**2)/(2*radius));
+    countsOfClicks[id] += 1;
+    console.log(id, sumsOfDistanceFromStick[id], countsOfClicks[id]);
 }
