@@ -40,17 +40,10 @@ const startButton = document.getElementById("start-btn");
 //секунд в единице измерения
 const secondsInUnitOfMeasurement = 60*1000;
 
-//for making test easier we may add these:
-const offsetXZone = 0.08;
-
-
 //*69/70 cause border also is in radius (width=35vw border=0.5vw)
 const radius = bigCircle.offsetWidth/2 * 69/70;
 const center_x = bigCircle.offsetLeft + bigCircle.offsetWidth/2;
 const center_y = bigCircle.offsetTop + bigCircle.offsetHeight/2;
-// const leftZone = center_x - smallCircle.offsetWidth/2  - stick.offsetWidth/2 - radius*offsetXZone;
-// const rightZone = center_x + smallCircle.offsetWidth/2 +stick.offsetWidth/2 + radius*offsetXZone;
-
 
 
 //IDK why we should divide by 57.(3), but it works
@@ -58,8 +51,7 @@ const speedForOneRotationPerMinute = (2*Math.PI*radius) / secondsInUnitOfMeasure
 const frequency = 40;
 //range of random acceleration
 const rangeOfRandomAcceleration = 10;
-//for adding some more time after end:
-const afterEndGap = 2;
+
 
 
 function DisableAllStuffForSettingParameters(){
@@ -110,7 +102,7 @@ function Start(){
 
 	setTimeout(function (){
 		clearInterval(updatePosition)
-		if(needResultsButton.checked) {result.textContent = `Вы успели нажать на кнопку в нужный момент ${sumOfDistanceFromStick}  раз(a), промохнулись ${countOfClicks} раз(а). Всего кружок сделал ${allRotationsCount.toFixed(2)} оборот(а/ов)`;}
+		if(needResultsButton.checked) {result.textContent = `Ваша меткость: ${(sumOfDistanceFromStick/countOfClicks).toFixed(2)}  за ${countOfClicks} кликов. Всего кружок сделал ${allRotationsCount.toFixed(2)} оборот(а/ов)`;}
 		triggerButton.disabled = true;
 		startButton.disabled = false;
 		EnableAllStuffForSettingParameters();
@@ -136,6 +128,6 @@ function Trigger(){
 	if(x>center_x){
 		sign = -1
 	}
-	sumOfDistanceFromStick += sign*(Math.sqrt((x-center_x)**2 + (y-center_y)**2));
+	sumOfDistanceFromStick += sign*(Math.sqrt((x-center_x)**2 + (y-center_y)**2)/(2*radius));
 	countOfClicks += 1;
 }
