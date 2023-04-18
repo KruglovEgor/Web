@@ -31,7 +31,7 @@ function ExactAcceleration(){
 
 const bigCircle = document.getElementById("big-circle");
 const smallCircle = document.getElementById("small-circle");
-const stick = document.getElementById("stick");
+//const stick = document.getElementById("stick");
 const progressBar = document.getElementById("progress-bar");
 const result = document.getElementById("result");
 const triggerButton = document.getElementById("trigger-btn");
@@ -46,8 +46,7 @@ const center_x = bigCircle.offsetLeft + bigCircle.offsetWidth/2;
 const center_y = bigCircle.offsetTop + bigCircle.offsetHeight/2;
 
 
-//IDK why we should divide by 57.(3), but it works
-const speedForOneRotationPerMinute = (2*Math.PI*radius) / secondsInUnitOfMeasurement /(57+1/3);
+const speedForOneRotationPerMinute = (2*Math.PI*radius) / secondsInUnitOfMeasurement /(180/Math.PI);
 const frequency = 40;
 //range of random acceleration
 const rangeOfRandomAcceleration = 10;
@@ -76,8 +75,8 @@ let sumOfDistanceFromStick = 0;
 let countOfClicks = 0;
 function Start(){
 	sumOfDistanceFromStick = 0; countOfClicks = 0;
-	const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
-	//const timeOfTest = 0.25 * secondsInUnitOfMeasurement;
+	//const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
+	const timeOfTest = 1 * secondsInUnitOfMeasurement;
 	const startVelocity = velocitySlider.value * speedForOneRotationPerMinute;
 	let acceleration = 0;
 	if(randomAccelerationButton.checked){
@@ -90,13 +89,14 @@ function Start(){
 	DisableAllStuffForSettingParameters();
 
 	let velocity = startVelocity;
-	const allRotationsCount = velocitySlider.value*timeSlider.value + (acceleration/speedForOneRotationPerMinute * (timeSlider.value) ** 2)/2;
+	const allRotationsCount = velocitySlider.value*timeSlider.value + (acceleration/speedForOneRotationPerMinute * ((timeSlider.value) ** 2))/2;
 
 	const startTime = Date.now();
 	let updatePosition = setInterval(function (){
 		const spentTime = (Date.now()-startTime);
 		Rotation(spentTime, velocity);
 		velocity = (spentTime/secondsInUnitOfMeasurement)*acceleration + startVelocity;
+		console.log(velocity)
 		progressBar.value =spentTime/timeOfTest;
 	}, frequency)
 

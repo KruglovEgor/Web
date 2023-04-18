@@ -74,8 +74,7 @@ const center_y = bigCircles.item(0).offsetTop + bigCircles.item(0).offsetHeight/
 
 
 
-//IDK why we should divide by 57.(3), but it works
-const speedForOneRotationPerMinute = (2*Math.PI*radius) / secondsInUnitOfMeasurement /(57+1/3);
+const speedForOneRotationPerMinute = (2*Math.PI*radius) / secondsInUnitOfMeasurement /(180/Math.PI);
 // const speedForOneRotationPerMinute = (2*Math.PI*radius) / secondsInUnitOfMeasurement;
 const frequency = 40;
 //range of random acceleration
@@ -107,8 +106,8 @@ function EnableAllStuffForSettingParameters(){
 
 function Start(){
     rightClicks = 0; wrongClicks = 0;
-    const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
-
+    //const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
+    const  timeOfTest = 0.5 * secondsInUnitOfMeasurement;
     const startVelocities = [];
     for(let i = 0; i < velocitySliders.length; i++){
         startVelocities.push(velocitySliders.item(i).value*speedForOneRotationPerMinute)
@@ -126,7 +125,10 @@ function Start(){
     triggerButtons.forEach(elem => {elem.disabled=false;})
     DisableAllStuffForSettingParameters();
 
-    let velocities = startVelocities;
+    let velocities = [];
+    for(let i = 0; i<startVelocities.length; i++){
+        velocities[i] = startVelocities[i];
+    }
 
     const allRotationsCounts = [];
     for (let i = 0; i<bigCircles.length; i++){
