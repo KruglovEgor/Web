@@ -47,7 +47,7 @@ const center_y = bigCircle.offsetTop + bigCircle.offsetHeight/2;
 
 
 const speedForOneRotationPerMinute = (2*Math.PI*radius) / secondsInUnitOfMeasurement /(180/Math.PI);
-const frequency = 40;
+const frequency = 10;
 //range of random acceleration
 const rangeOfRandomAcceleration = 10;
 
@@ -75,12 +75,12 @@ let sumOfDistanceFromStick = 0;
 let countOfClicks = 0;
 function Start(){
 	sumOfDistanceFromStick = 0; countOfClicks = 0;
-	//const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
-	const timeOfTest = 1 * secondsInUnitOfMeasurement;
+	const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
+	//const timeOfTest = 1 * secondsInUnitOfMeasurement;
 	const startVelocity = velocitySlider.value * speedForOneRotationPerMinute;
 	let acceleration = 0;
 	if(randomAccelerationButton.checked){
-		acceleration = Math.random()*rangeOfRandomAcceleration*speedForOneRotationPerMinute;
+		acceleration = Math.round(Math.random()*rangeOfRandomAcceleration)*speedForOneRotationPerMinute;
 	} else acceleration = accelerationSlider.value * speedForOneRotationPerMinute;
 
 	result.textContent="";
@@ -124,9 +124,10 @@ function Trigger(){
 	const x = smallCircle.offsetLeft;
 	const y = smallCircle.offsetTop;
 	let sign = 1;
-	if(x>center_x){
+	if(x<center_x){
 		sign = -1
 	}
-	sumOfDistanceFromStick += sign*(Math.sqrt((x-center_x)**2 + (y-center_y)**2)/(2*radius));
+	//Math.floor(bigCircle.offsetWidth/140) cause border is 1/70
+	sumOfDistanceFromStick += sign*(Math.sqrt((x-center_x)**2 + (y-Math.floor(bigCircle.offsetWidth/140))**2)/(2*radius));
 	countOfClicks += 1;
 }

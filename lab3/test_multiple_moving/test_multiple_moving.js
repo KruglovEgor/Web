@@ -54,9 +54,6 @@ const startButton = document.getElementById("start-btn");
 //секунд в единице измерения
 const secondsInUnitOfMeasurement = 60*1000;
 
-//for making test easier we may add these:
-const offsetXZone = 0.08;
-
 let sumsOfDistanceFromStick = [];
 let countsOfClicks = [];
 
@@ -76,8 +73,7 @@ for(let i = 0; i<bigCircles.length; i++){
 
 
 const speedForOneRotationPerMinute = (2*Math.PI*radius) / secondsInUnitOfMeasurement /(180/Math.PI);
-// const speedForOneRotationPerMinute = (2*Math.PI*radius) / secondsInUnitOfMeasurement;
-const frequency = 40;
+const frequency = 10;
 //range of random acceleration
 const rangeOfRandomAcceleration = 10;
 
@@ -108,8 +104,8 @@ function Start(){
         sumsOfDistanceFromStick[i] = 0;
         countsOfClicks[i]=0;
     }
-    //const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
-    const  timeOfTest = 0.5 * secondsInUnitOfMeasurement;
+    const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
+    //const  timeOfTest = 0.5 * secondsInUnitOfMeasurement;
     const startVelocities = [];
     for(let i = 0; i < velocitySliders.length; i++){
         startVelocities.push(velocitySliders.item(i).value*speedForOneRotationPerMinute)
@@ -117,7 +113,7 @@ function Start(){
     let accelerations = [];
     for(let i = 0; i < accelerationSliders.length; i++){
         if(randomAccelerationButtons.item(i).checked){
-            accelerations.push(Math.random()*rangeOfRandomAcceleration*speedForOneRotationPerMinute);
+            accelerations.push(Math.round(Math.random()*rangeOfRandomAcceleration)*speedForOneRotationPerMinute);
         }
         else accelerations.push(accelerationSliders.item(i).value*speedForOneRotationPerMinute);
     }
@@ -149,11 +145,14 @@ function Start(){
 
     setTimeout(function (){
         clearInterval(updatePosition)
-        //todo fix
-        // if(needResultsButton.checked) {result.textContent = `Вы успели нажать на кнопку в нужный момент ${rightClicks}  раз(a), промохнулись ${wrongClicks} раз(а). Всего кружок сделал ${allRotationsCount.toFixed(2)} оборот(а/ов)`;}
-        // triggerButton.disabled = true;
-        // startButton.disabled = false;
-        // EnableAllStuffForSettingParameters();
+        if(needResultsButton.checked) {result.textContent = `Your results (average distance of missing, clicks, count of spins): `;
+        for (let i = 0; i<bigCircles.length; i++){
+            result.textContent += `[${(sumsOfDistanceFromStick[i]/countsOfClicks[i]).toFixed(2)}, ${countsOfClicks[i]}, ${allRotationsCounts[i]}]; `
+            }
+        }
+        triggerButton.disabled = true;
+        startButton.disabled = false;
+        EnableAllStuffForSettingParameters();
     }, timeOfTest)
 }
 
@@ -172,10 +171,11 @@ function Trigger(id){
     const x = smallCircles[id].offsetLeft;
     const y = smallCircles[id].offsetTop;
     let sign = 1;
-    if(x>centers_x[id]){
+    if(x<centers_x[id]){
         sign = -1
     }
-    sumsOfDistanceFromStick[id] += sign*(Math.sqrt((x-centers_x[id])**2 + (y-centers_y[id])**2)/(2*radius));
+    //Math.round(2*radius/80) cause border is 1/40
+    sumsOfDistanceFromStick[id] += sign*(Math.sqrt((x-centers_x[id])**2 + (y-Math.round(2*radius/80))**2)/(2*radius));
     countsOfClicks[id] += 1;
-    console.log(id, sumsOfDistanceFromStick[id], countsOfClicks[id]);
+    console.log(sign*(Math.sqrt((x-centers_x[id])**2 + (y-Math.round(2*radius/80))**2)/(2*radius)));
 }
