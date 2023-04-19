@@ -31,7 +31,6 @@ function ExactAcceleration(){
 
 const bigCircle = document.getElementById("big-circle");
 const smallCircle = document.getElementById("small-circle");
-//const stick = document.getElementById("stick");
 const progressBar = document.getElementById("progress-bar");
 const result = document.getElementById("result");
 const triggerButton = document.getElementById("trigger-btn");
@@ -73,10 +72,11 @@ function EnableAllStuffForSettingParameters(){
 
 let sumOfDistanceFromStick = 0;
 let countOfClicks = 0;
+let allRotationsCount = 0;
 function Start(){
-	sumOfDistanceFromStick = 0; countOfClicks = 0;
-	const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
-	//const timeOfTest = 1 * secondsInUnitOfMeasurement;
+	sumOfDistanceFromStick = 0; countOfClicks = 0; allRotationsCount = 0;
+	//const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
+	const timeOfTest = 1 * secondsInUnitOfMeasurement;
 	const startVelocity = velocitySlider.value * speedForOneRotationPerMinute;
 	let acceleration = 0;
 	if(randomAccelerationButton.checked){
@@ -89,20 +89,19 @@ function Start(){
 	DisableAllStuffForSettingParameters();
 
 	let velocity = startVelocity;
-	const allRotationsCount = velocitySlider.value*timeSlider.value + (acceleration/speedForOneRotationPerMinute * ((timeSlider.value) ** 2))/2;
+	// const allRotationsCount = velocitySlider.value*timeSlider.value + (acceleration/speedForOneRotationPerMinute * ((timeSlider.value) ** 2))/2;
 
 	const startTime = Date.now();
 	let updatePosition = setInterval(function (){
 		const spentTime = (Date.now()-startTime);
 		Rotation(spentTime, velocity);
 		velocity = (spentTime/secondsInUnitOfMeasurement)*acceleration + startVelocity;
-		console.log(velocity)
 		progressBar.value =spentTime/timeOfTest;
 	}, frequency)
 
 	setTimeout(function (){
 		clearInterval(updatePosition)
-		if(needResultsButton.checked) {result.textContent = `Ваша меткость: ${(sumOfDistanceFromStick/countOfClicks).toFixed(2)}  за ${countOfClicks} кликов. Всего кружок сделал ${allRotationsCount.toFixed(2)} оборот(а/ов)`;}
+		if(needResultsButton.checked) {result.textContent = `Your accuracy: ${(sumOfDistanceFromStick/countOfClicks).toFixed(2)}, Count of clicks: ${countOfClicks}, Count of spins: ${allRotationsCount.toFixed(2)}`;}
 		triggerButton.disabled = true;
 		startButton.disabled = false;
 		EnableAllStuffForSettingParameters();
@@ -111,9 +110,16 @@ function Start(){
 
 
 function Rotation(deltaTime, currentVelocity){
+	const previousX = smallCircle.offsetLeft+smallCircle.offsetWidth/2;
 	const angle = ((currentVelocity*deltaTime*180)/(Math.PI*radius)) % 360 ;
-	const x = center_x + radius * Math.sin(angle);
-	const y = center_y - radius * Math.cos(angle);
+	const x = Math.floor(center_x + radius * Math.sin(angle));
+	const y = Math.floor(center_y - radius * Math.cos(angle));
+
+	if ((previousX < center_x) && (x + smallCircle.offsetWidth/2 >= center_x) && (y < center_y)){
+		allRotationsCount++;
+		//console.log('true', previousX, x+ smallCircle.offsetWidth/2, center_x);
+	}
+	//else console.log('false', previousX, x, center_x);
 	smallCircle.style.left = x + 'px';
 	smallCircle.style.top = y + 'px';
 }

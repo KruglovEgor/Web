@@ -56,6 +56,7 @@ const secondsInUnitOfMeasurement = 60*1000;
 
 let sumsOfDistanceFromStick = [];
 let countsOfClicks = [];
+let allRotationsCounts = []
 
 for (let i =0; i<bigCircles.length; i++){
     sumsOfDistanceFromStick[i] = 0;
@@ -63,12 +64,12 @@ for (let i =0; i<bigCircles.length; i++){
 }
 
 //*69/70 cause border also is in radius (width=35vw border=0.5vw)
-const radius = bigCircles.item(0).offsetWidth/2 * 39/40;
+const radius = bigCircles[0].offsetWidth/2 * 39/40;
 const centers_x = [];
 const centers_y = [];
 for(let i = 0; i<bigCircles.length; i++){
-    centers_x.push(bigCircles.item(i).offsetLeft + bigCircles.item(i).offsetWidth/2);
-    centers_y.push(bigCircles.item(i).offsetTop + bigCircles.item(i).offsetHeight/2);
+    centers_x.push(bigCircles[i].offsetLeft + bigCircles[i].offsetWidth/2);
+    centers_y.push(bigCircles[i].offsetTop + bigCircles[i].offsetHeight/2);
 }
 
 
@@ -103,9 +104,10 @@ function Start(){
     for (let i =0; i<bigCircles.length; i++){
         sumsOfDistanceFromStick[i] = 0;
         countsOfClicks[i]=0;
+        allRotationsCounts[i]=0;
     }
-    const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
-    //const  timeOfTest = 0.5 * secondsInUnitOfMeasurement;
+    //const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
+    const  timeOfTest = 1 * secondsInUnitOfMeasurement;
     const startVelocities = [];
     for(let i = 0; i < velocitySliders.length; i++){
         startVelocities.push(velocitySliders.item(i).value*speedForOneRotationPerMinute)
@@ -128,12 +130,10 @@ function Start(){
         velocities[i] = startVelocities[i];
     }
 
-    const allRotationsCounts = [];
-    for (let i = 0; i<bigCircles.length; i++){
-        allRotationsCounts.push(startVelocities[i]/speedForOneRotationPerMinute*timeOfTest/secondsInUnitOfMeasurement + accelerations[i]/speedForOneRotationPerMinute*((timeOfTest/secondsInUnitOfMeasurement) ** 2)/2);
-    }
-
     const startTime = Date.now();
+
+    
+
     let updatePosition = setInterval(function (){
         const spentTime = (Date.now()-startTime);
         for(let i = 0; i < bigCircles.length; i++){
@@ -150,7 +150,7 @@ function Start(){
             result.textContent += `[${(sumsOfDistanceFromStick[i]/countsOfClicks[i]).toFixed(2)}, ${countsOfClicks[i]}, ${allRotationsCounts[i]}]; `
             }
         }
-        triggerButton.disabled = true;
+        triggerButtons.forEach(elem => {elem.disabled=true;});
         startButton.disabled = false;
         EnableAllStuffForSettingParameters();
     }, timeOfTest)
@@ -158,9 +158,17 @@ function Start(){
 
 
 function Rotation(deltaTime, currentVelocity, id){
+    const previousX = smallCircles[id].offsetLeft + smallCircles[id].offsetWidth/2;
     const angle = ((currentVelocity*deltaTime*180)/(Math.PI*radius)) % 360 ;
-    const x = centers_x[id] + radius * Math.sin(angle);
-    const y = centers_y[id] - radius * Math.cos(angle);
+    const x = Math.floor(centers_x[id] + radius * Math.sin(angle));
+    const y = Math.floor(centers_y[id] - radius * Math.cos(angle));
+
+    if ((previousX < centers_x[id]) && (x + smallCircles[id].offsetWidth/2 >= centers_x[id]) && (y < centers_y[id])){
+        allRotationsCounts[id]++;
+        console.log('true', id, previousX, x, centers_x[id]);
+    }
+    //else console.log('false', id, previousX, x, centers_x[id]);
+
     smallCircles[id].style.left = x + 'px';
     smallCircles[id].style.top = y + 'px';
 }
