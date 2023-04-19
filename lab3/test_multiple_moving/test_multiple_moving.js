@@ -116,8 +116,7 @@ function Start(){
         countsOfClicks[i]=0;
         allRotationsCounts[i]=0;
     }
-    //const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
-    const  timeOfTest = 1 * secondsInUnitOfMeasurement;
+    const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
     const startVelocities = [];
     for(let i = 0; i < velocitySliders.length; i++){
         startVelocities.push(velocitySliders.item(i).value*speedForOneRotationPerMinute)
@@ -141,8 +140,6 @@ function Start(){
     }
 
     const startTime = Date.now();
-
-    
 
     let updatePosition = setInterval(function (){
         const spentTime = (Date.now()-startTime);
@@ -173,19 +170,13 @@ function Rotation(deltaTime, currentVelocity, id){
     const x = Math.floor(centers_x[id] + radius * Math.sin(angle));
     const y = Math.floor(centers_y[id] - radius * Math.cos(angle));
 
-    if ((previousX < centers_x[id]) && (x + smallCircles[id].offsetWidth/2 >= centers_x[id]) && (y < centers_y[id])){
-        allRotationsCounts[id]++;
-        //console.log('true', id, previousX, x, centers_x[id]);
-    }
-    //else console.log('false', id, previousX, x, centers_x[id]);
-
+    if ((previousX < centers_x[id]) && (x + smallCircles[id].offsetWidth/2 >= centers_x[id]) && (y < centers_y[id])){allRotationsCounts[id]++;}
     smallCircles[id].style.left = x + 'px';
     smallCircles[id].style.top = y + 'px';
 }
 
 
 function Trigger(id){
-    //check if it's surely center of small circle
     const x = smallCircles[id].offsetLeft;
     const y = smallCircles[id].offsetTop;
     let sign = 1;
@@ -195,5 +186,4 @@ function Trigger(id){
     //Math.round(2*radius/80) cause border is 1/40
     sumsOfDistanceFromStick[id] += sign*(Math.sqrt((x-centers_x[id])**2 + (y-Math.round(2*radius/80))**2)/(2*radius));
     countsOfClicks[id] += 1;
-    //console.log(sign*(Math.sqrt((x-centers_x[id])**2 + (y-Math.round(2*radius/80))**2)/(2*radius)));
 }
