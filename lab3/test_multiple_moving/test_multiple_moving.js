@@ -38,16 +38,14 @@ function ExactAcceleration(id){
     accelerationStuffs.item(id).hidden=false;
 }
 
-
 const bigCircles = document.querySelectorAll(".big-circle");
 const smallCircles = document.querySelectorAll(".small-circle");
-const sticks = document.querySelectorAll(".stick");
 
 
 const progressBar = document.getElementById("progress-bar");
 const result = document.getElementById("result");
 
-const triggerButtons = document.querySelectorAll(".trigger-btn");
+let triggerButtons = document.querySelectorAll(".trigger-button");
 
 const startButton = document.getElementById("start-btn");
 
@@ -56,12 +54,15 @@ const secondsInUnitOfMeasurement = 60*1000;
 
 let sumsOfDistanceFromStick = [];
 let countsOfClicks = [];
-let allRotationsCounts = []
+let allRotationsCounts = [];
 
 for (let i =0; i<bigCircles.length; i++){
     sumsOfDistanceFromStick[i] = 0;
     countsOfClicks[i]=0;
 }
+
+triggerButtons.forEach(elem => {elem.disabled=true;})
+
 
 //*69/70 cause border also is in radius (width=35vw border=0.5vw)
 const radius = bigCircles[0].offsetWidth/2 * 39/40;
@@ -99,8 +100,17 @@ function EnableAllStuffForSettingParameters(){
 }
 
 
+function handleKeyPress(event) {
+    const code = event.keyCode-49;
+    if ((0 <= code) && (code < triggerButtons.length)){
+        triggerButtons[code].click();
+    }
+
+}
+
 
 function Start(){
+    document.addEventListener("keydown", handleKeyPress);
     for (let i =0; i<bigCircles.length; i++){
         sumsOfDistanceFromStick[i] = 0;
         countsOfClicks[i]=0;
@@ -165,7 +175,7 @@ function Rotation(deltaTime, currentVelocity, id){
 
     if ((previousX < centers_x[id]) && (x + smallCircles[id].offsetWidth/2 >= centers_x[id]) && (y < centers_y[id])){
         allRotationsCounts[id]++;
-        console.log('true', id, previousX, x, centers_x[id]);
+        //console.log('true', id, previousX, x, centers_x[id]);
     }
     //else console.log('false', id, previousX, x, centers_x[id]);
 
@@ -185,5 +195,5 @@ function Trigger(id){
     //Math.round(2*radius/80) cause border is 1/40
     sumsOfDistanceFromStick[id] += sign*(Math.sqrt((x-centers_x[id])**2 + (y-Math.round(2*radius/80))**2)/(2*radius));
     countsOfClicks[id] += 1;
-    console.log(sign*(Math.sqrt((x-centers_x[id])**2 + (y-Math.round(2*radius/80))**2)/(2*radius)));
+    //console.log(sign*(Math.sqrt((x-centers_x[id])**2 + (y-Math.round(2*radius/80))**2)/(2*radius)));
 }
