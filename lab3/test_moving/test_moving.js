@@ -51,7 +51,6 @@ const frequency = 10;
 const rangeOfRandomAcceleration = 10;
 
 
-
 function DisableAllStuffForSettingParameters(){
 	timeSlider.disabled = true;
 	velocitySlider.disabled = true;
@@ -75,8 +74,7 @@ let countOfClicks = 0;
 let allRotationsCount = 0;
 function Start(){
 	sumOfDistanceFromStick = 0; countOfClicks = 0; allRotationsCount = 0;
-	//const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
-	const timeOfTest = 1 * secondsInUnitOfMeasurement;
+	const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
 	const startVelocity = velocitySlider.value * speedForOneRotationPerMinute;
 	let acceleration = 0;
 	if(randomAccelerationButton.checked){
@@ -89,8 +87,7 @@ function Start(){
 	DisableAllStuffForSettingParameters();
 
 	let velocity = startVelocity;
-	// const allRotationsCount = velocitySlider.value*timeSlider.value + (acceleration/speedForOneRotationPerMinute * ((timeSlider.value) ** 2))/2;
-
+	
 	const startTime = Date.now();
 	let updatePosition = setInterval(function (){
 		const spentTime = (Date.now()-startTime);
@@ -115,18 +112,13 @@ function Rotation(deltaTime, currentVelocity){
 	const x = Math.floor(center_x + radius * Math.sin(angle));
 	const y = Math.floor(center_y - radius * Math.cos(angle));
 
-	if ((previousX < center_x) && (x + smallCircle.offsetWidth/2 >= center_x) && (y < center_y)){
-		allRotationsCount++;
-		//console.log('true', previousX, x+ smallCircle.offsetWidth/2, center_x);
-	}
-	//else console.log('false', previousX, x, center_x);
+	if ((previousX < center_x) && (x + smallCircle.offsetWidth/2 >= center_x) && (y < center_y)){allRotationsCount++;}
 	smallCircle.style.left = x + 'px';
 	smallCircle.style.top = y + 'px';
 }
 
 
 function Trigger(){
-	//check if it's surely center of small circle
 	const x = smallCircle.offsetLeft;
 	const y = smallCircle.offsetTop;
 	let sign = 1;
