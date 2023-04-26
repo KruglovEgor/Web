@@ -42,13 +42,15 @@ const rightTriggerButton = document.getElementById("right-trigger-btn");
 //секунд в единице измерения
 const secondsInUnitOfMeasurement = 60*1000;
 
+const maxInTestBar = 100;
 
-const speedForOneBarPerMinute = 100 / secondsInUnitOfMeasurement;
+const speedForOneBarPerMinute = maxInTestBar / secondsInUnitOfMeasurement;
 
 const frequencyOfUpdate = 10;
 const frequencyOfChangingVelocitySign = 1000;
 const rangeOfRandomAcceleration = 5;
-
+const ratioOfVelocityForRedZone = 1.2;
+const ratioForTimeOfMovingRedZone = 2;
 
 function DisableAllStuffForSettingParameters(){
     timeSlider.disabled = true;
@@ -67,12 +69,31 @@ function EnableAllStuffForSettingParameters(){
     needResultsButton.disabled = false; dontNeedResultsButton.disabled = false;
 }
 
-
+let keepGoingLeft = false;
+let keepGoingRight = false;
 function handleKeyPress(event) {
     const code = event.keyCode;
-    if(code === 37){leftTriggerButton.click()}
-    else if(code === 39){rightTriggerButton.click()}
+    if(code === 37){
+        keepGoingLeft = true;
+        keepGoingRight = false;
+    }
+    else if(code === 39){
+        keepGoingLeft = false;
+        keepGoingRight = true;
+    }
 }
+
+
+function handleKeyUp(event) {
+    const code = event.keyCode;
+    if(code === 37){
+        keepGoingLeft = false;
+    }
+    else if(code === 39){
+        keepGoingRight = false;
+    }
+}
+
 
 
 let timeOutOfZone = 0;
@@ -93,21 +114,29 @@ function Start(){
     leftTriggerButton.disabled = false;
     rightTriggerButton.disabled = false;
     DisableAllStuffForSettingParameters();
-    document.addEventListener("keydown", handleKeyPress);
 
+    document.addEventListener("keydown", handleKeyPress);
+    document.addEventListener("keyup", handleKeyUp)
 
     velocity = startVelocity;
 
     const startTime = Date.now();
+    //todo сделать когда заполено по максимуму или наоборот 0 - менять знак возможно с рандомной задержкой
     let updatePosition = setInterval(function (){
         let spentTime = Date.now() - startTime;
 
-        if((redZone.offsetLeft > testBar.offsetWidth*testBar.value/100) || (redZone.offsetLeft+redZone.offsetWidth < testBar.offsetWidth*testBar.value/100)) timeOutOfZone += frequencyOfUpdate
-        console.log(redZone.offsetLeft, testBar.offsetWidth*testBar.value/100)
+        if((redZone.offsetLeft > testBar.offsetWidth*testBar.value/maxInTestBar) || (redZone.offsetLeft+redZone.offsetWidth < testBar.offsetWidth*testBar.value/maxInTestBar)) timeOutOfZone += frequencyOfUpdate
         testBar.value += (frequencyOfUpdate)*velocity;
 
         if(velocity >= 0) velocity +=(frequencyOfUpdate/secondsInUnitOfMeasurement)*acceleration;
         else velocity -=(frequencyOfUpdate/secondsInUnitOfMeasurement)*acceleration;
+
+        if(keepGoingLeft){
+            leftTriggerButton.click();
+        }
+        if(keepGoingRight){
+            rightTriggerButton.click();
+        }
         //also should work. In case of getting problems with acceleration use this code
         // if(velocity >= 0) velocity = (spentTime/secondsInUnitOfMeasurement)*acceleration + startVelocity;
         // else velocity =velocity = -1*((spentTime/secondsInUnitOfMeasurement)*acceleration + startVelocity);
@@ -131,18 +160,28 @@ function Start(){
     }, timeOfTest)
 }
 
-//todo сделать движение более плавным.
-// Возможно надо создать константное или почти константное (зависит от скорости и ускорения прогресса) ускорение для зоны, которое будет её тормозить
-// а вместо смещения давать скорость только не знаю от чего должна зависеть скорость, она уже вряд ли может быть константой
-// в теории можно упростить всё и брать так: скоростьКраснойЗоны = 2*х (в момент нажатия), а ускорение равняется = 1*х. и чтобы через n (маленькое) секунд скорость = 0, а через 2n уже скорость
-// была отрицательна и зона двигалась влево. Тогда всё сводится к 1 клавише. Этот х скорее всего должен зависеть от скорости теста в данный момент.
-// в альтернативном варианте получаем плавное движение (надеюсь) и что-то похожее на рыбалку в геншине
-// -
-// также для плавности можно попробовать создавать setInterval и setTime который убивает setInterval, только надо быть осторожным с константами
+
+let currentLeftOfRedZone = redZone.offsetLeft;
+//todo не дать выйти за границы и быть осторожным с тем чтобы когда полоса на 0 или полностью заполнена можно было регистрировать попадание в зону
 function Trigger(direction){
-    if(direction === 'left'){
-        redZone.style.left = (redZone.offsetLeft - 3*(testBar.offsetWidth/100))+'px'
+
+    if (direction === 'left') {
+
+        for(let i = 0; i < ratioForTimeOfMovingRedZone; i++){
+            setTimeout(function () {
+                currentLeftOfRedZone -= ratioOfVelocityForRedZone * frequencyOfUpdate *(testBar.offsetWidth / maxInTestBar) * Math.abs(velocity);
+                redZone.style.left = currentLeftOfRedZone + 'px';
+            }, frequencyOfUpdate);
+        }
+
+
+    } else if (direction === 'right') {
+
+        for(let i = 0; i < ratioForTimeOfMovingRedZone; i++){
+            setTimeout(function () {
+                currentLeftOfRedZone += ratioOfVelocityForRedZone * frequencyOfUpdate *(testBar.offsetWidth / maxInTestBar) * Math.abs(velocity);
+                redZone.style.left = currentLeftOfRedZone + 'px';
+            }, frequencyOfUpdate);
+        }
     }
-    else if(direction === 'right')
-        redZone.style.left = (redZone.offsetLeft + 3*(testBar.offsetWidth/100))+'px';
 }
