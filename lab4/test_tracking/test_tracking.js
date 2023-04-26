@@ -38,6 +38,8 @@ const leftTriggerButton = document.getElementById("left-trigger-btn");
 const rightTriggerButton = document.getElementById("right-trigger-btn");
 
 
+const maxInTestBar = 100;
+
 
 //секунд в единице измерения
 const secondsInUnitOfMeasurement = 60*1000;
@@ -82,7 +84,7 @@ function Start(){
     timeOutOfZone = 0;
     const timeOfTest = timeSlider.value * secondsInUnitOfMeasurement;
     //fot quick tests
-    //const timeOfTest = 1 * secondsInUnitOfMeasurement;
+    //const timeOfTest = 0.5 * secondsInUnitOfMeasurement;
     const startVelocity = velocitySlider.value * speedForOneBarPerMinute;
     let acceleration = 0;
     if(randomAccelerationButton.checked){
@@ -100,11 +102,11 @@ function Start(){
     let velocity = startVelocity;
 
     const startTime = Date.now();
+    //todo сделать когда заполнено по максимуму или наоборот 0 - менять знак возможно с рандомной задержкой (не знаю надо или нет)
     let updatePosition = setInterval(function (){
         let spentTime = Date.now() - startTime;
         if ((testBar.value < leftRedZone) || (testBar.value>rightRedZone)) timeOutOfZone+=frequencyOfUpdate;
         testBar.value += (frequencyOfUpdate)*velocity;
-        console.log(testBar.value, spentTime);
         if(velocity >= 0) velocity +=(frequencyOfUpdate/secondsInUnitOfMeasurement)*acceleration;
         else velocity -=(frequencyOfUpdate/secondsInUnitOfMeasurement)*acceleration;
         //also should work. In case of getting problems with acceleration use this code
@@ -120,6 +122,7 @@ function Start(){
     setTimeout(function (){
         clearInterval(updatePosition)
         clearInterval(updateSighOfVelocity)
+        testBar.value = maxInTestBar/2;
         if(needResultsButton.checked) {result.textContent = `You were out of red zone for ${timeOutOfZone/1000} second(s) of ${timeOfTest/1000} seconds`}
         leftTriggerButton.disabled = true;
         rightTriggerButton.disabled = true;

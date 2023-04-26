@@ -95,7 +95,7 @@ function handleKeyUp(event) {
 }
 
 
-
+let currentLeftOfRedZone = redZone.offsetLeft;
 let timeOutOfZone = 0;
 let velocity = 0
 function Start(){
@@ -121,7 +121,7 @@ function Start(){
     velocity = startVelocity;
 
     const startTime = Date.now();
-    //todo сделать когда заполено по максимуму или наоборот 0 - менять знак возможно с рандомной задержкой
+    //todo сделать когда заполнено по максимуму или наоборот 0 - менять знак возможно с рандомной задержкой (не знаю надо или нет)
     let updatePosition = setInterval(function (){
         let spentTime = Date.now() - startTime;
 
@@ -148,10 +148,12 @@ function Start(){
     }, frequencyOfChangingVelocitySign);
 
 
-    //todo расставить всё по центру
     setTimeout(function (){
         clearInterval(updatePosition)
         clearInterval(updateSighOfVelocity)
+        testBar.value = maxInTestBar/2;
+        redZone.style.left = 45+'%';
+        currentLeftOfRedZone = redZone.offsetLeft;
         if(needResultsButton.checked) {result.textContent = `You were out of red zone for ${timeOutOfZone/1000} second(s) of ${timeOfTest/1000} seconds`}
         leftTriggerButton.disabled = true;
         rightTriggerButton.disabled = true;
@@ -161,8 +163,6 @@ function Start(){
 }
 
 
-let currentLeftOfRedZone = redZone.offsetLeft;
-//todo не дать выйти за границы и быть осторожным с тем чтобы когда полоса на 0 или полностью заполнена можно было регистрировать попадание в зону
 function Trigger(direction){
 
     if (direction === 'left') {
@@ -170,7 +170,8 @@ function Trigger(direction){
         for(let i = 0; i < ratioForTimeOfMovingRedZone; i++){
             setTimeout(function () {
                 currentLeftOfRedZone -= ratioOfVelocityForRedZone * frequencyOfUpdate *(testBar.offsetWidth / maxInTestBar) * Math.abs(velocity);
-                redZone.style.left = currentLeftOfRedZone + 'px';
+                currentLeftOfRedZone = Math.max(currentLeftOfRedZone, 0);
+                redZone.style.left =  currentLeftOfRedZone + 'px';
             }, frequencyOfUpdate);
         }
 
@@ -180,6 +181,7 @@ function Trigger(direction){
         for(let i = 0; i < ratioForTimeOfMovingRedZone; i++){
             setTimeout(function () {
                 currentLeftOfRedZone += ratioOfVelocityForRedZone * frequencyOfUpdate *(testBar.offsetWidth / maxInTestBar) * Math.abs(velocity);
+                currentLeftOfRedZone = Math.min(currentLeftOfRedZone, testBar.offsetWidth-redZone.offsetWidth+redZone.offsetWidth/30);
                 redZone.style.left = currentLeftOfRedZone + 'px';
             }, frequencyOfUpdate);
         }
