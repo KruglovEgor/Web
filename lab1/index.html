@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab1</title>
+</head>
+<body>
+<table
+    border="1"
+    cellpadding="0"
+    cellspacing="0"
+    width="100%"
+    height=auto>
+    <tr class="header">
+        <th colspan="2">Kruglov Egor, P3224 <br> Variant: 3408</th>
+    </tr>
+    <tr>
+        <td width="40%">Graphic</td>
+        <td width="60%">Parameters</td>
+    </tr>
+    <tr>
+        <td width="40%">
+            <img src="img/Lab1.svg" alt="Graphic" width="100%">
+        </td>
+        <td width="60%">
+            <div class="container" id="x-container">
+                <label>x:</label>
+
+                <input type="radio" name="x-value" value="-3" id="x=-3">
+                <label for="x=-3">-3</label>
+
+                <input type="radio" name="x-value" value="-2" id="x=-2">
+                <label for="x=-2">-2</label>
+
+                <input type="radio" name="x-value" value="-1" id="x=-1">
+                <label for="x=-1">-1</label>
+
+                <input type="radio" name="x-value" value="0" id="x=0">
+                <label for="x=0">0</label>
+
+                <input type="radio" name="x-value" value="1" id="x=1">
+                <label for="x=1">1</label>
+
+                <input type="radio" name="x-value" value="2" id="x=2">
+                <label for="x=2">2</label>
+
+                <input type="radio" name="x-value" value="3" id="x=3">
+                <label for="x=3">3</label>
+
+                <input type="radio" name="x-value" value="4" id="x=4">
+                <label for="x=4">4</label>
+
+                <input type="radio" name="x-value" value="5" id="x=5">
+                <label for="x=5">5</label>
+            </div>
+
+            <div class="container" id="y-container">
+                <!-- We may not write "for" in this label, because we have container -->
+                <label for="y-value">y:</label>
+                <input type="text" name="y-value" id="y-value" placeholder="value from (-5; 3)" maxlength="6">
+            </div>
+
+            <div class="container" id="r-container">
+                <label>R:</label>
+            </div>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
