@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Lab1</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <table
@@ -12,64 +13,113 @@
     width="100%"
     height=auto>
     <tr class="header">
-        <th colspan="2">Kruglov Egor, P3224 <br> Variant: 3408</th>
+        <th colspan="4">Kruglov Egor, P3224 <br> Variant: 3408</th>
     </tr>
     <tr>
-        <td width="40%">Graphic</td>
-        <td width="60%">Parameters</td>
+        <td width="40%">
+            <div class="column-name">Graphic</div>
+        </td>
+        <td width="60%" colspan="3">
+            <div class="column-name">Parameters</div>
+        </td>
     </tr>
     <tr>
         <td width="40%">
             <img src="img/Lab1.svg" alt="Graphic" width="100%">
         </td>
-        <td width="60%">
+        <td width="20%">
             <div class="container" id="x-container">
-                <label>x:</label>
 
-                <input type="radio" name="x-value" value="-3" id="x=-3">
-                <label for="x=-3">-3</label>
+                <div class="parameter-name">x: </div> <br>
+                <div class="input-label">
+                    <input type="radio" name="x-value" value="-3" id="x=-3">
+                    <label for="x=-3">-3</label> <br>
+                </div>
 
+                <div class="input-label">
                 <input type="radio" name="x-value" value="-2" id="x=-2">
-                <label for="x=-2">-2</label>
+                <label for="x=-2">-2</label> <br>
+                </div>
 
+                <div class="input-label">
                 <input type="radio" name="x-value" value="-1" id="x=-1">
-                <label for="x=-1">-1</label>
+                <label for="x=-1">-1</label> <br>
+                </div>
 
+                <div class="input-label">
                 <input type="radio" name="x-value" value="0" id="x=0">
-                <label for="x=0">0</label>
+                <label for="x=0">0</label> <br>
+                </div>
 
+                <div class="input-label">
                 <input type="radio" name="x-value" value="1" id="x=1">
-                <label for="x=1">1</label>
+                <label for="x=1">1</label> <br>
+                </div>
 
+                <div class="input-label">
                 <input type="radio" name="x-value" value="2" id="x=2">
-                <label for="x=2">2</label>
+                <label for="x=2">2</label> <br>
+                </div>
 
+                <div class="input-label">
                 <input type="radio" name="x-value" value="3" id="x=3">
-                <label for="x=3">3</label>
+                <label for="x=3">3</label> <br>
+                </div>
 
+                <div class="input-label">
                 <input type="radio" name="x-value" value="4" id="x=4">
-                <label for="x=4">4</label>
+                <label for="x=4">4</label> <br>
+                </div>
 
+                <div class="input-label">
                 <input type="radio" name="x-value" value="5" id="x=5">
                 <label for="x=5">5</label>
-            </div>
-
-            <div class="container" id="y-container">
-                <!-- We may not write "for" in this label, because we have container -->
-                <label for="y-value">y:</label>
-                <input type="text" name="y-value" id="y-value" placeholder="value from (-5; 3)" maxlength="6">
-            </div>
-
-            <div class="container" id="r-container">
-                <!-- Разобраться с подписями справа (мб сделать снизу). Также посмотреть что делать с множественным выбором чекбоксов. Возможно проверять в js возможно заменить на выпадающий список или на радио-кнопки -->
-                <label>R:</label>
-                <input type="checkbox" id="r=1" value="1"> 1
-                <input type="checkbox" id="r=1.5" value="1.5"> 1.5
-                <input type="checkbox" id="r=2" value="2"> 2
-                <input type="checkbox" id="r=2.5" value="2.5"> 2.5
-                <input type="checkbox" id="r=3" value="3"> 3
+                </div>
             </div>
         </td>
+            <td width="20%">
+                <div class="container" id="y-container">
+                    <!-- We may not write "for" in this label, because we have container -->
+                    <div class="parameter-name">y: </div> <br>
+                    <input type="text" name="y-value" id="y-value" placeholder="value from (-5; 3)" maxlength="6">
+                </div>
+            </td>
+            <td width="20%">
+                <div class="container" id="r-container">
+                    <!-- Разобраться с подписями справа (мб сделать снизу). Также посмотреть что делать с множественным выбором чекбоксов. Возможно проверять в js возможно заменить на выпадающий список или на радио-кнопки -->
+                    <div class="parameter-name">R: </div> <br>
+
+                    <div class="input-label">
+                    <label for="r=1">
+                        <input type="checkbox" id="r=1" value="1"> 1 <br>
+                    </label>
+                    </div>
+
+                    <div class="input-label">
+                    <label for="r=1.5">
+                        <input type="checkbox" id="r=1.5" value="1.5"> 1.5 <br>
+                    </label>
+                    </div>
+
+                    <div class="input-label">
+                    <label for="r=2">
+                        <input type="checkbox" id="r=2" value="2"> 2 <br>
+                    </label>
+                    </div>
+
+                    <div class="input-label">
+                    <label for="r=2.5">
+                        <input type="checkbox" id="r=2.5" value="2.5"> 2.5 <br>
+                    </label>
+                    </div>
+
+                    <div class="input-label">
+                    <label for="r=3">
+                        <input type="checkbox" id="r=3" value="3"> 3 <br>
+                    </label>
+                    </div>
+                </div>
+            </td>
     </tr>
 </table>
 </body>
