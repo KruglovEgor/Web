@@ -1,12 +1,4 @@
-#intro{
-    font-size: 20px;
-}
-#parameters{
-    margin: 10px;
-}
-#send-button{
-    margin: 5px;
-}
+
 
 .column-name{
     font-size: 20px;
@@ -25,4 +17,16 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
+}
+
+#send-button{
+    width: 200px; /* Set the width of the button */
+    height: 50px; /* Set the height of the button */
+    background-color: green; /* Set the background color to green */
+    color: white; /* Set the text color to white */
+    font-size: 20px; /* Set the font size */
+    border: none; /* Remove the border */
+    cursor: pointer; /* Add a pointer cursor on hover */
+    margin: 10px auto; /* Center the button horizontally */
+    display: block; /* Make it a block element for centering */
 }

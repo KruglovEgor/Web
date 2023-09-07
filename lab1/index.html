@@ -16,18 +16,18 @@
         <th colspan="4">Kruglov Egor, P3224 <br> Variant: 3408</th>
     </tr>
     <tr>
-        <td width="40%">
+        <td width="50%">
             <div class="column-name">Graphic</div>
         </td>
-        <td width="60%" colspan="3">
+        <td width="50%" colspan="3">
             <div class="column-name">Parameters</div>
         </td>
     </tr>
     <tr>
-        <td width="40%">
+        <td width="50%">
             <img src="img/Lab1.svg" alt="Graphic" width="100%">
         </td>
-        <td width="20%">
+        <td width="16.66%">
             <div class="container" id="x-container">
 
                 <div class="parameter-name">x: </div> <br>
@@ -77,14 +77,14 @@
                 </div>
             </div>
         </td>
-            <td width="20%">
+            <td width="16.66%">
                 <div class="container" id="y-container">
                     <!-- We may not write "for" in this label, because we have container -->
                     <div class="parameter-name">y: </div> <br>
                     <input type="text" name="y-value" id="y-value" placeholder="value from (-5; 3)" maxlength="6">
                 </div>
             </td>
-            <td width="20%">
+            <td width="16.66%">
                 <div class="container" id="r-container">
                     <!-- Разобраться с подписями справа (мб сделать снизу). Также посмотреть что делать с множественным выбором чекбоксов. Возможно проверять в js возможно заменить на выпадающий список или на радио-кнопки -->
                     <div class="parameter-name">R: </div> <br>
@@ -122,5 +122,48 @@
             </td>
     </tr>
 </table>
+<button id="send-button"> Check</button>
+
+<table
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        height=auto>
+    <tr>
+        <td width="30%">
+            <table border="1" cellpadding="0" cellspacing="0" width="100%" height="auto">
+                <tr>
+                    <td>
+                        <div class="column-name">Clock</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        It's clock!!!
+                    </td>
+                </tr>
+            </table>
+        </td>
+
+        <td width="70%">
+            <table border="1" cellpadding="0" cellspacing="0" width="100%" height="auto">
+                <tr>
+                    <td colspan="6">
+                        <div class="column-name">History</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>x</td>
+                    <td>y</td>
+                    <td>R</td>
+                    <td>Time</td>
+                    <td>Execution</td>
+                    <td>Hit</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
 </body>
 </html>
