@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Lab1</title>
     <link rel="stylesheet" href="style.css">
+    <script src="jsScripts/clock.js"></script>
 </head>
 <body>
 <table
@@ -81,7 +82,7 @@
                 <div class="container" id="y-container">
                     <!-- We may not write "for" in this label, because we have container -->
                     <div class="parameter-name">y: </div> <br>
-                    <input type="text" name="y-value" id="y-value" placeholder="value from (-5; 3)" maxlength="6">
+                    <input type="text" name="y-value" id="y-value" placeholder="(-5; 3)" maxlength="6">
                 </div>
             </td>
             <td width="16.66%">
@@ -139,7 +140,7 @@
                 </tr>
                 <tr>
                     <td>
-                        It's clock!!!
+                        <div id="clock">01.01.1970, 00:00:00</div>
                     </td>
                 </tr>
             </table>
