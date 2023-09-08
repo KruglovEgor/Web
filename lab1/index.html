@@ -5,6 +5,7 @@
     <title>Lab1</title>
     <link rel="stylesheet" href="style.css">
     <script src="jsScripts/clock.js"></script>
+    <script src="jsScripts/sender.js"></script>
 </head>
 <body>
 <table
@@ -33,7 +34,7 @@
 
                 <div class="parameter-name">x: </div> <br>
                 <div class="input-label">
-                    <input type="radio" name="x-value" value="-3" id="x=-3">
+                    <input type="radio" name="x-value" value="-3" id="x=-3" checked>
                     <label for="x=-3">-3</label> <br>
                 </div>
 
@@ -92,38 +93,40 @@
 
                     <div class="input-label">
                     <label for="r=1">
-                        <input type="checkbox" id="r=1" value="1"> 1 <br>
+                        <input type="radio" name="r-value" id="r=1" value="1" checked> 1 <br>
                     </label>
                     </div>
 
                     <div class="input-label">
                     <label for="r=1.5">
-                        <input type="checkbox" id="r=1.5" value="1.5"> 1.5 <br>
+                        <input type="radio" name="r-value" id="r=1.5" value="1.5"> 1.5 <br>
                     </label>
                     </div>
 
                     <div class="input-label">
                     <label for="r=2">
-                        <input type="checkbox" id="r=2" value="2"> 2 <br>
+                        <input type="radio" name="r-value" id="r=2" value="2"> 2 <br>
                     </label>
                     </div>
 
                     <div class="input-label">
                     <label for="r=2.5">
-                        <input type="checkbox" id="r=2.5" value="2.5"> 2.5 <br>
+                        <input type="radio" name="r-value" id="r=2.5" value="2.5"> 2.5 <br>
                     </label>
                     </div>
 
                     <div class="input-label">
                     <label for="r=3">
-                        <input type="checkbox" id="r=3" value="3"> 3 <br>
+                        <input type="radio" name="r-value" id="r=3" value="3"> 3 <br>
                     </label>
                     </div>
                 </div>
             </td>
     </tr>
 </table>
-<button id="send-button"> Check</button>
+
+
+<button id="send-button" onclick="sendValues()"> Check</button>
 
 <table
         cellpadding="0"
@@ -147,7 +150,7 @@
         </td>
 
         <td width="70%">
-            <table border="1" cellpadding="0" cellspacing="0" width="100%" height="auto">
+            <table border="1" cellpadding="0" cellspacing="0" width="100%" height="auto" id="history">
                 <tr>
                     <td colspan="6">
                         <div class="column-name">History</div>
