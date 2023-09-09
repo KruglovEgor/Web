@@ -1,8 +1,13 @@
 <?php
 
-//todo написать html страницу. Перенести валидацию из php в js
-//todo страничка должна быть в табличном стиле
-//todo сделать svg графика в figma
+//todo Возможно удалить валидацию из php
+//todo возможно закрепить часы
+//todo возможно сделать историю по 10 запросов, а дальше перелистывание
+//todo посмотреть ajax
+//todo сделать надписи в hit True-green, False-red для лучшей визуализации
+//todo возможно разнести sender.js на несколько отдельных файлов js
+//todo посмотреть нейминг переменных возможно сделать все в одном стиле
+
 
 require_once "validator.php";
 require_once "area.php";
@@ -18,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $x = $data['x'];
         $y = $data['y'];
         $r = $data['r'];
-
+        //todo mb delete validate and validator.php
         if (validate($x, $y, $r)) {
             $in_area = inArea($x, $y, $r) ? "TRUE" : "FALSE";
             $execution_time = number_format(microtime(true) - $start, 8, ".", "") * 10 ^ 6;
@@ -29,11 +34,9 @@ _END
         }
         die("Problem with values of X, Y or R. Try again!");
     }
-    die(json_encode($_POST));
-    //die("Something went wrong! Try again!");
+    die("Something went wrong! Try again!");
 }
 else{
-    echo("We expect POST method");
+    echo("We only expect POST method!");
 }
-
 ?>
