@@ -8,31 +8,32 @@ require_once "validator.php";
 require_once "area.php";
 date_default_timezone_set('Europe/Moscow');
 
-$start = microtime(true);
-$current_time = date("d/m/y H:i:s");
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $start = microtime(true);
+    $current_time = date("d/m/y H:i:s");
 
-if (isset($_POST["x"]) && isset($_POST["y"]) && isset($_POST["r"])) {
-   $x =  $_POST["x"];
-   $y = $_POST["y"];
-   $r = $_POST["r"];
+    $data = json_decode(file_get_contents('php://input'), true);
 
-   if (validate($x, $y, $r)){
-       $in_area = inArea($x, $y, $r) ? "<span style='color: #0fc40f'>TRUE</span>" : "<span style='color: red'>FALSE</span>";
-       $execution_time = number_format(microtime(true) - $start, 8, ".", "") * 10^6;
-       die(<<<_END
-        <tr>
-            <th style="max-width: 300px; word-wrap: break-word">$x</th>
-            <th>$y</th>
-            <th>$r</th>
-            <th>$current_time</th>
-            <th>$execution_time</th>
-            <th>$in_area</th>
-        </tr>
+    if ($data !== null && isset($data["x"]) && isset($data["y"]) && isset($data["r"])) {
+        $x = $data['x'];
+        $y = $data['y'];
+        $r = $data['r'];
+
+        if (validate($x, $y, $r)) {
+            $in_area = inArea($x, $y, $r) ? "TRUE" : "FALSE";
+            $execution_time = number_format(microtime(true) - $start, 8, ".", "") * 10 ^ 6;
+            die(<<<_END
+{"x": $x, "y": $y, "r": $r, "time": "$current_time", "execution_time": $execution_time, "hit": "$in_area"}
 _END
-       );
-   }
-    die("Problem with values of X, Y or R. Try again!");
+            );
+        }
+        die("Problem with values of X, Y or R. Try again!");
+    }
+    die(json_encode($_POST));
+    //die("Something went wrong! Try again!");
+}
+else{
+    echo("We expect POST method");
 }
 
-die("Something went wrong! Try again!");
 ?>

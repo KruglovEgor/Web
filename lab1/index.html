@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="jsScripts/clock.js"></script>
     <script src="jsScripts/sender.js"></script>
+    <script src="jsScripts/history.js"></script>
 </head>
 <body>
 <table
@@ -126,7 +127,7 @@
 </table>
 
 
-<button id="send-button" onclick="sendValues()"> Check</button>
+<button id="send-button" onclick="validateValues()"> Check</button>
 
 <table
         cellpadding="0"
@@ -161,7 +162,7 @@
                     <td>y</td>
                     <td>R</td>
                     <td>Time</td>
-                    <td>Execution</td>
+                    <td>Execution (ms)</td>
                     <td>Hit</td>
                 </tr>
             </table>
