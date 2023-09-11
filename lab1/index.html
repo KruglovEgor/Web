@@ -19,12 +19,8 @@
         <th colspan="4">Kruglov Egor, P3224 <br> Variant: 3408</th>
     </tr>
     <tr>
-        <td width="50%">
-            <div class="column-name">Graphic</div>
-        </td>
-        <td width="50%" colspan="3">
-            <div class="column-name">Parameters</div>
-        </td>
+        <td width="50%" class="column-name">Graphic</td>
+        <td width="50%" colspan="3" class="column-name">Parameters</td>
     </tr>
     <tr>
         <td width="50%">
@@ -82,14 +78,12 @@
         </td>
             <td width="16.66%">
                 <div class="container" id="y-container">
-                    <!-- We may not write "for" in this label, because we have container -->
                     <div class="parameter-name">y: </div> <br>
                     <input type="text" name="y-value" id="y-value" placeholder="(-5; 3)" maxlength="6">
                 </div>
             </td>
             <td width="16.66%">
                 <div class="container" id="r-container">
-                    <!-- Разобраться с подписями справа (мб сделать снизу). Также посмотреть что делать с множественным выбором чекбоксов. Возможно проверять в js возможно заменить на выпадающий список или на радио-кнопки -->
                     <div class="parameter-name">R: </div> <br>
 
                     <div class="input-label">
@@ -138,14 +132,10 @@
         <td width="30%">
             <table border="1" cellpadding="0" cellspacing="0" width="100%" height="auto">
                 <tr>
-                    <td>
-                        <div class="column-name">Clock</div>
-                    </td>
+                    <td class="column-name">Clock</td>
                 </tr>
                 <tr>
-                    <td>
-                        <div id="clock">01.01.1970, 00:00:00</div>
-                    </td>
+                    <td id="clock">01.01.1970, 00:00:00</td>
                 </tr>
             </table>
         </td>
@@ -153,17 +143,15 @@
         <td width="70%">
             <table border="1" cellpadding="0" cellspacing="0" width="100%" height="auto" id="history">
                 <tr>
-                    <td colspan="6">
-                        <div class="column-name">History</div>
-                    </td>
+                    <td colspan="6" class="column-name">History</td>
                 </tr>
                 <tr>
-                    <td>x</td>
-                    <td>y</td>
-                    <td>R</td>
-                    <td>Time</td>
-                    <td>Execution (ms)</td>
-                    <td>Hit</td>
+                    <td class="column-name">x</td>
+                    <td class="column-name">y</td>
+                    <td class="column-name">R</td>
+                    <td class="column-name">Time</td>
+                    <td class="column-name">Execution (microsecond)</td>
+                    <td class="column-name">Hit</td>
                 </tr>
             </table>
         </td>

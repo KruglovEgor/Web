@@ -25,6 +25,12 @@ function addRecord(x, y, r, time, execution_time, hit) {
 
     const hitCell = document.createElement("th");
     hitCell.textContent = hit;
+    if(hit === "TRUE"){
+        hitCell.classList.add("green-text");
+    }
+    else {
+        hitCell.classList.add("red-text");
+    }
     newRecord.appendChild(hitCell);
 
     history.appendChild(newRecord);

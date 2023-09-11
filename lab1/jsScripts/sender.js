@@ -1,13 +1,7 @@
 function checkValues(x, y, r){
     const x_values = [-3, -2, -1, 0, 1, 2, 3, 4, 5];
     const r_values = [1, 1.5, 2, 2.5, 3];
-    //console.log("x=", x);
-    //console.log("y=", y);
-    //console.log("r=", r);
     if(!x_values.includes(x) || !r_values.includes(r) || !isNumber(y)){
-        //console.log('x inc ', x_values.includes(x));
-        //console.log('r inc ', r_values.includes(r));
-        //console.log("y isNum ", isNumber(y));
         return false;
     }
     else return !(y < -5 || y > 3);
@@ -78,7 +72,6 @@ function validateValues(){
             sendValues(x, y, r);
         }
     else{
-            alert("Value error")
-            //console.log("Value error");
+            alert("Value error");
         }
 }

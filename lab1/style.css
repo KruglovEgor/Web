@@ -19,12 +19,12 @@
 }
 
 #send-button{
-    width: 20%; /* Set the width of the button */
-    height: 10%; /* Set the height of the button */
-    background-color: green; /* Set the background color to green */
-    color: white; /* Set the text color to white */
-    font-size: 20px; /* Set the font size */
-    border: none; /* Remove the border */
+    width: 20%;
+    height: 10%;
+    background-color: green;
+    color: white;
+    font-size: 20px;
+    border: none;
     cursor: pointer; /* Add a pointer cursor on hover */
     margin: 10px auto; /* Center the button horizontally */
     display: block; /* Make it a block element for centering */
@@ -36,4 +36,17 @@
 
 #clock{
     font-size: 3vw;
+}
+
+.parameter-name{
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.green-text{
+    color: green;
+}
+
+.red-text{
+    color: red;
 }

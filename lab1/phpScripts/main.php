@@ -3,8 +3,6 @@
 //todo Возможно удалить валидацию из php
 //todo возможно закрепить часы
 //todo возможно сделать историю по 10 запросов, а дальше перелистывание
-//todo посмотреть ajax
-//todo сделать надписи в hit True-green, False-red для лучшей визуализации
 //todo возможно разнести sender.js на несколько отдельных файлов js
 //todo посмотреть нейминг переменных возможно сделать все в одном стиле
 
@@ -23,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $x = $data['x'];
         $y = $data['y'];
         $r = $data['r'];
-        //todo mb delete validate and validator.php
         if (validate($x, $y, $r)) {
             $in_area = inArea($x, $y, $r) ? "TRUE" : "FALSE";
             $execution_time = number_format(microtime(true) - $start, 8, ".", "") * 10 ^ 6;
