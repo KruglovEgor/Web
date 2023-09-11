@@ -8,6 +8,8 @@
     <script src="jsScripts/sender.js"></script>
     <script src="jsScripts/history.js"></script>
     <script src="jsScripts/localStorageScript.js"></script>
+    <script src="jsScripts/saveValuesOnUpdate.js"></script>
+    <script src="jsScripts/cleaner.js"></script>
 </head>
 <body>
 <table
@@ -32,55 +34,58 @@
 
                 <div class="parameter-name">x: </div> <br>
                 <div class="input-label">
-                    <input type="radio" name="x-value" value="-3" id="x=-3" checked>
+                    <input type="radio" name="x-value" value="-3" id="x=-3" onclick="saveLastX(-3)">
                     <label for="x=-3">-3</label> <br>
                 </div>
 
                 <div class="input-label">
-                <input type="radio" name="x-value" value="-2" id="x=-2">
+                <input type="radio" name="x-value" value="-2" id="x=-2" onclick="saveLastX(-2)">
                 <label for="x=-2">-2</label> <br>
                 </div>
 
                 <div class="input-label">
-                <input type="radio" name="x-value" value="-1" id="x=-1">
+                <input type="radio" name="x-value" value="-1" id="x=-1" onclick="saveLastX(-1)">
                 <label for="x=-1">-1</label> <br>
                 </div>
 
                 <div class="input-label">
-                <input type="radio" name="x-value" value="0" id="x=0">
+                <input type="radio" name="x-value" value="0" id="x=0" onclick="saveLastX(0)">
                 <label for="x=0">0</label> <br>
                 </div>
 
                 <div class="input-label">
-                <input type="radio" name="x-value" value="1" id="x=1">
+                <input type="radio" name="x-value" value="1" id="x=1" onclick="saveLastX(1)">
                 <label for="x=1">1</label> <br>
                 </div>
 
                 <div class="input-label">
-                <input type="radio" name="x-value" value="2" id="x=2">
+                <input type="radio" name="x-value" value="2" id="x=2" onclick="saveLastX(2)">
                 <label for="x=2">2</label> <br>
                 </div>
 
                 <div class="input-label">
-                <input type="radio" name="x-value" value="3" id="x=3">
+                <input type="radio" name="x-value" value="3" id="x=3" onclick="saveLastX(3)">
                 <label for="x=3">3</label> <br>
                 </div>
 
                 <div class="input-label">
-                <input type="radio" name="x-value" value="4" id="x=4">
+                <input type="radio" name="x-value" value="4" id="x=4" onclick="saveLastX(4)">
                 <label for="x=4">4</label> <br>
                 </div>
 
                 <div class="input-label">
-                <input type="radio" name="x-value" value="5" id="x=5">
+                <input type="radio" name="x-value" value="5" id="x=5" onclick="saveLastX(5)">
                 <label for="x=5">5</label>
                 </div>
+
+                <div class="error" id="x-error"></div>
             </div>
         </td>
             <td width="16.66%">
                 <div class="container" id="y-container">
                     <div class="parameter-name">y: </div> <br>
-                    <input type="text" name="y-value" id="y-value" placeholder="(-5; 3)" maxlength="6">
+                    <input type="text" name="y-value" id="y-value" placeholder="(-5; 3)" maxlength="6" oninput="saveLastY()">
+                    <div class="error" id="y-error"></div>
                 </div>
             </td>
             <td width="16.66%">
@@ -89,40 +94,44 @@
 
                     <div class="input-label">
                     <label for="r=1">
-                        <input type="radio" name="r-value" id="r=1" value="1" checked> 1 <br>
+                        <input type="checkbox" name="r-value" id="r=1" value="1" onclick="saveLastR()"> 1 <br>
                     </label>
                     </div>
 
                     <div class="input-label">
                     <label for="r=1.5">
-                        <input type="radio" name="r-value" id="r=1.5" value="1.5"> 1.5 <br>
+                        <input type="checkbox" name="r-value" id="r=1.5" value="1.5" onclick="saveLastR()"> 1.5 <br>
                     </label>
                     </div>
 
                     <div class="input-label">
                     <label for="r=2">
-                        <input type="radio" name="r-value" id="r=2" value="2"> 2 <br>
+                        <input type="checkbox" name="r-value" id="r=2" value="2" onclick="saveLastR()"> 2 <br>
                     </label>
                     </div>
 
                     <div class="input-label">
                     <label for="r=2.5">
-                        <input type="radio" name="r-value" id="r=2.5" value="2.5"> 2.5 <br>
+                        <input type="checkbox" name="r-value" id="r=2.5" value="2.5" onclick="saveLastR()"> 2.5 <br>
                     </label>
                     </div>
 
                     <div class="input-label">
                     <label for="r=3">
-                        <input type="radio" name="r-value" id="r=3" value="3"> 3 <br>
+                        <input type="checkbox" name="r-value" id="r=3" value="3" onclick="saveLastR()"> 3 <br>
                     </label>
+
+                        <div class="error" id="r-error"></div>
                     </div>
                 </div>
             </td>
     </tr>
 </table>
 
-
-<button id="send-button" onclick="validateValues()"> Check</button>
+<div class="container" id="button-container">
+    <button id="send-button" onclick="validateValues()" class="bottom-button"> Check</button>
+    <button id="clear-button" onclick="clean()" class="bottom-button">Clear</button>
+</div>
 
 <table
         cellpadding="0"

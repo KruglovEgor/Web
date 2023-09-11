@@ -18,16 +18,28 @@
     align-items: flex-start;
 }
 
-#send-button{
+.bottom-button{
     width: 20%;
     height: 10%;
-    background-color: green;
     color: white;
     font-size: 20px;
     border: none;
-    cursor: pointer; /* Add a pointer cursor on hover */
-    margin: 10px auto; /* Center the button horizontally */
-    display: block; /* Make it a block element for centering */
+    cursor: pointer;
+    margin: 10px auto;
+    display: block;
+}
+
+
+#button-container {
+    display: flex; /* Используем flex-контейнер */
+    justify-content: space-between; /* Распределение элементов по ширине контейнера */
+}
+
+#send-button{
+    background-color: green;
+}
+#clear-button{
+    background-color: brown;
 }
 
 #y-value{
@@ -55,5 +67,13 @@
 .header{
     font-family: sans-serif;
     color: black;
-    font-size: 10px;
+    font-size: 20px;
 }
+
+
+.error{
+    font-size: 10px;
+    color: red;
+}
+
+
