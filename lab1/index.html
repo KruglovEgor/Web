@@ -7,6 +7,7 @@
     <script src="jsScripts/clock.js"></script>
     <script src="jsScripts/sender.js"></script>
     <script src="jsScripts/history.js"></script>
+    <script src="jsScripts/localStorageScript.js"></script>
 </head>
 <body>
 <table
@@ -127,10 +128,12 @@
         cellpadding="0"
         cellspacing="0"
         width="100%"
-        height=auto>
+        height=auto
+        id="clock-and-history"
+>
     <tr>
         <td width="30%">
-            <table border="1" cellpadding="0" cellspacing="0" width="100%" height="auto">
+            <table border="1" cellpadding="0" cellspacing="0" width="100%" height="auto" id="table-clock">
                 <tr>
                     <td class="column-name">Clock</td>
                 </tr>

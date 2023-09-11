@@ -37,6 +37,7 @@ function sendValues(x, y, r) {
                 //console.log(result);
                 const index_of_json = result.indexOf('{');
                 if (index_of_json !== -1){
+                    saveToLocalStorage(result.slice(index_of_json));
                     const json_data = JSON.parse(result.slice(index_of_json));
                     addRecord(json_data.x, json_data.y, json_data.r, json_data.time, json_data.execution_time, json_data.hit)
                 }
