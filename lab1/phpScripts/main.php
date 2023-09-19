@@ -1,6 +1,5 @@
 <?php
 
-//todo Возможно удалить валидацию из php
 //todo возможно закрепить часы
 //todo возможно сделать историю по 10 запросов, а дальше перелистывание
 //todo возможно разнести sender.js на несколько отдельных файлов js
@@ -29,11 +28,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 _END
             );
         }
+        http_response_code(400);
         die("Problem with values of X, Y or R. Try again!");
     }
-    die("Something went wrong! Try again!");
+    http_response_code(400);
+    die("We got not full packet. Try again!");
 }
 else{
+    http_response_code(405);
     echo("We only expect POST method!");
 }
 ?>
