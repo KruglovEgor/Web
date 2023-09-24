@@ -10,6 +10,7 @@
     <script src="jsScripts/localStorageScript.js"></script>
     <script src="jsScripts/saveValuesOnUpdate.js"></script>
     <script src="jsScripts/cleaner.js"></script>
+    <script src="jsScripts/pageHistory.js"></script>
 </head>
 <body>
 <table
@@ -130,7 +131,7 @@
 
 <div class="container" id="button-container">
     <button id="send-button" onclick="validateValues()" class="bottom-button"> Check</button>
-    <button id="clear-button" onclick="clean()" class="bottom-button">Clear</button>
+    <button id="clear-button" onclick="cleanLocalStorageAndTable()" class="bottom-button">Clear</button>
 </div>
 
 
@@ -149,5 +150,10 @@
         <td class="column-name">Hit</td>
     </tr>
 </table>
+<span id="current-page" class="page-count">1</span><span id="separator" class="page-count">/</span><span id="last-page" class="page-count">1</span>
+<div id="pagination">
+    <button id="prev-button" onclick="previousPage()"><-</button>
+    <button id="next-button" onclick="nextPage()">-></button>
+</div>
 </body>
 </html>

@@ -1,5 +1,14 @@
-function clean(){
+function cleanLocalStorageAndTable(){
     localStorage.removeItem("history");
+    cleanTable();
+    const currentPage = document.getElementById("current-page");
+    const lastPage = document.getElementById("last-page");
+    currentPage.textContent = 1;
+    lastPage.textContent = 1;
+}
+
+
+function cleanTable(){
     const history = document.getElementById("history");
     const lines = history.getElementsByTagName("tr");
     if (lines.length > 2){

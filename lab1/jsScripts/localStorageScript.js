@@ -1,8 +1,12 @@
 window.addEventListener("load", () => {
     const savedHistory = JSON.parse(localStorage.getItem("history")) || [];
-    savedHistory.forEach(record => {
-        addRecord(record.x, record.y, record.r, record.time, record.execution_time, record.hit);
-    });
+
+    const lastPage = document.getElementById("last-page");
+    lastPage.textContent = Math.floor(savedHistory.length / 10) + 1;
+    const currentPage = document.getElementById("current-page");
+    currentPage.textContent = lastPage.textContent;
+    showLastPage(savedHistory);
+
     const savedX = JSON.parse(localStorage.getItem("x")) || "";
     const savedY = JSON.parse(localStorage.getItem("y")) || "";
     const savedR = JSON.parse(localStorage.getItem("r")) || [];

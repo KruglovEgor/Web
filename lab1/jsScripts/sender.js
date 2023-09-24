@@ -40,7 +40,7 @@ async function sendValues(x, y, r) {
         else {
             const data = await response.json();
             saveToLocalStorage(data);
-            addRecord(data.x, data.y, data.r, data.time, data.execution_time, data.hit);
+            newElementInHistory(data.x, data.y, data.r, data.time, data.execution_time, data.hit);
         }
     }
 
@@ -102,7 +102,6 @@ function validateValues(){
                 }
                 else {
                     serverError.textContent = "It seems like you changed values of buttons. Try to update the page!";
-                    //alert("It seems like you changed values of buttons. Try to update the page!")
                 }
             }
         }
