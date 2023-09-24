@@ -18,39 +18,44 @@ function isNumber(number){
 }
 
 
-function sendValues(x, y, r) {
+
+
+async function sendValues(x, y, r) {
+    const formData = new FormData();
+    formData.append("x", x);
+    formData.append("y", y);
+    formData.append("r", r);
     const path = "phpScripts/main.php";
-    let data = {
-        "x": x,
-        "y": y,
-        "r": r
-    };
-    fetch(path, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    })
-        .then(response => {
-            response.text().then(result => {
-                //console.log(result);
-                const index_of_json = result.indexOf('{');
-                if (index_of_json !== -1){
-                    saveToLocalStorage(result.slice(index_of_json));
-                    const json_data = JSON.parse(result.slice(index_of_json));
-                    addRecord(json_data.x, json_data.y, json_data.r, json_data.time, json_data.execution_time, json_data.hit)
-                }
-                else {
-                    alert(result)
-                }
-            })
-            }
-        )
+
+    try {
+        const response = await fetch(path, {
+            method: "POST",
+            body: formData
+        });
+
+        if(!response.ok){
+            const errorMessage = await response.text();
+            throw new Error(errorMessage);
+        }
+        else {
+            const data = await response.json();
+            saveToLocalStorage(data);
+            addRecord(data.x, data.y, data.r, data.time, data.execution_time, data.hit);
+        }
+    }
+
+    catch (error) {
+        const serverError = document.getElementById("server-error");
+        serverError.textContent = error;
+    }
 }
 
 
 function validateValues(){
+
+    const serverError = document.getElementById("server-error");
+    serverError.textContent = "";
+
     let x;
     let r = [];
     const x_radio = document.getElementsByName("x-value");
@@ -96,7 +101,8 @@ function validateValues(){
                     sendValues(x, y, r.at(i));
                 }
                 else {
-                    alert("It seems like you changed values of buttons. Try to update the page!")
+                    serverError.textContent = "It seems like you changed values of buttons. Try to update the page!";
+                    //alert("It seems like you changed values of buttons. Try to update the page!")
                 }
             }
         }

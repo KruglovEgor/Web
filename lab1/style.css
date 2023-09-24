@@ -76,3 +76,8 @@
     font-size: 15px;
     color: red;
 }
+
+#server-error{
+    text-align: center;
+    width: 100%;
+}

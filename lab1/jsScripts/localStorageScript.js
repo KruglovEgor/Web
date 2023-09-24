@@ -1,17 +1,12 @@
 window.addEventListener("load", () => {
     const savedHistory = JSON.parse(localStorage.getItem("history")) || [];
     savedHistory.forEach(record => {
-        const jsonRecord = JSON.parse(record);
-        addRecord(jsonRecord.x, jsonRecord.y, jsonRecord.r, jsonRecord.time, jsonRecord.execution_time, jsonRecord.hit);
+        addRecord(record.x, record.y, record.r, record.time, record.execution_time, record.hit);
     });
     const savedX = JSON.parse(localStorage.getItem("x")) || "";
     const savedY = JSON.parse(localStorage.getItem("y")) || "";
     const savedR = JSON.parse(localStorage.getItem("r")) || [];
-
-    console.log("x ", savedX);
-    console.log("y ", savedY);
-    console.log("r ", savedR);
-
+    
     if (savedX !== ""){
         const x_radio = document.getElementsByName("x-value");
         for(let i=0; i<x_radio.length; i++){

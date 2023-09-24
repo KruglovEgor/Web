@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Lab1</title>
     <link rel="stylesheet" href="style.css">
-    <script src="jsScripts/clock.js"></script>
+    <link rel="icon" type="image" href="img/favicon.ico">
     <script src="jsScripts/sender.js"></script>
     <script src="jsScripts/history.js"></script>
     <script src="jsScripts/localStorageScript.js"></script>
@@ -17,7 +17,7 @@
         cellpadding="0"
         cellspacing="0"
         width="100%"
-        height=auto>
+        >
     <tr class="header">
         <th colspan="4">Kruglov Egor, P3224 <br> Variant: 3408</th>
     </tr>
@@ -133,40 +133,20 @@
     <button id="clear-button" onclick="clean()" class="bottom-button">Clear</button>
 </div>
 
-<table
-        cellpadding="0"
-        cellspacing="0"
-        width="100%"
-        height=auto
-        id="clock-and-history"
->
-    <tr>
-        <td width="30%">
-            <table border="1" cellpadding="0" cellspacing="0" width="100%" height="auto" id="table-clock">
-                <tr>
-                    <td class="column-name">Clock</td>
-                </tr>
-                <tr>
-                    <td id="clock">01.01.1970, 00:00:00</td>
-                </tr>
-            </table>
-        </td>
 
-        <td width="70%">
-            <table border="1" cellpadding="0" cellspacing="0" width="100%" height="auto" id="history">
-                <tr>
-                    <td colspan="6" class="column-name">History</td>
-                </tr>
-                <tr>
-                    <td class="column-name">x</td>
-                    <td class="column-name">y</td>
-                    <td class="column-name">R</td>
-                    <td class="column-name">Time</td>
-                    <td class="column-name">Execution (microsecond)</td>
-                    <td class="column-name">Hit</td>
-                </tr>
-            </table>
-        </td>
+<div class="error" id="server-error"></div>
+
+<table border="1" cellpadding="0" cellspacing="0" width="100%" id="history">
+    <tr>
+        <td colspan="6" class="column-name">History</td>
+    </tr>
+    <tr>
+        <td class="column-name">x</td>
+        <td class="column-name">y</td>
+        <td class="column-name">R</td>
+        <td class="column-name">Time</td>
+        <td class="column-name">Execution (microsecond)</td>
+        <td class="column-name">Hit</td>
     </tr>
 </table>
 </body>
