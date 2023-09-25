@@ -89,11 +89,11 @@ function validateValues(){
     }
     const y_str = document.getElementById("y-value").value.trim();
     const y =  parseFloat(y_str);
-    if (!(y_str.search(/[^0-9.-]/) !== -1)) {
-        yError.textContent = "You must enter y (float number)!"
+    if (y_str === "" || isNaN(y)){
+        yError.textContent = "You must enter y!";
     }
-    else if (isNaN(y)){
-        yError.textContent = "It must be float number!";
+    else if(y_str.length !== y.toString().length){
+        yError.textContent = "Don't enter letters in this field!"
     }
     else {
         if(y <= -5 || y >= 3) {
