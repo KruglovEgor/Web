@@ -87,9 +87,13 @@ function validateValues(){
         rError.textContent = "You have to choose at least one r!"
         haveErrors = true;
     }
-    const y =  parseFloat(document.getElementById("y-value").value.trim());
-    if (isNaN(y) || y === ""){
-        yError.textContent = "You must enter y!";
+    const y_str = document.getElementById("y-value").value.trim();
+    const y =  parseFloat(y_str);
+    if (!(y_str.search(/[^0-9.-]/) !== -1)) {
+        yError.textContent = "You must enter y (float number)!"
+    }
+    else if (isNaN(y)){
+        yError.textContent = "It must be float number!";
     }
     else {
         if(y <= -5 || y >= 3) {
