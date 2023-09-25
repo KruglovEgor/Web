@@ -52,7 +52,14 @@ function showLastPage(savedHistory){
     cleanTable();
     if(savedHistory.length % 10 === 0){
         if(savedHistory.length !== 0){
-            goToPage(Math.floor(savedHistory.length / 10)+1);
+            for(let i = 0; i < 10; i++){
+                addRecord(savedHistory[Math.floor(savedHistory.length / 10 - 1) * 10 + i].x,
+                    savedHistory[Math.floor(savedHistory.length / 10 - 1) * 10 + i].y,
+                    savedHistory[Math.floor(savedHistory.length / 10 - 1) * 10+ i].r,
+                    savedHistory[Math.floor(savedHistory.length / 10 - 1) * 10+ i].time,
+                    savedHistory[Math.floor(savedHistory.length / 10 - 1) * 10+ i].execution_time,
+                    savedHistory[Math.floor(savedHistory.length / 10 - 1) * 10+ i].hit);
+            }
         }
     }
     else {
@@ -62,7 +69,7 @@ function showLastPage(savedHistory){
                 savedHistory[Math.floor(savedHistory.length / 10) * 10+ i].r,
                 savedHistory[Math.floor(savedHistory.length / 10) * 10+ i].time,
                 savedHistory[Math.floor(savedHistory.length / 10) * 10+ i].execution_time,
-                savedHistory[Math.floor(savedHistory.length / 10) * 10+ i].hit)
+                savedHistory[Math.floor(savedHistory.length / 10) * 10+ i].hit);
         }
     }
 }
