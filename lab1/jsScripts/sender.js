@@ -1,7 +1,12 @@
+import {newElementInHistory} from './pageHistory';
+import {saveToLocalStorage} from './localStorageScript';
+
+
+const xValues = [-3, -2, -1, 0, 1, 2, 3, 4, 5];
+const rValues = [1, 1.5, 2, 2.5, 3];
+
 function checkValues(x, y, r){
-    const x_values = [-3, -2, -1, 0, 1, 2, 3, 4, 5];
-    const r_values = [1, 1.5, 2, 2.5, 3];
-    if(!x_values.includes(x) || !r_values.includes(r) || !isNumber(y)){
+    if(!xValues.includes(x) || !rValues.includes(r) || !isNumber(y)){
         return false;
     }
     else return !(y < -5 || y > 3);
@@ -51,7 +56,7 @@ async function sendValues(x, y, r) {
 }
 
 
-function validateValues(){
+export function validateValues(){
 
     const serverError = document.getElementById("server-error");
     serverError.textContent = "";
@@ -87,13 +92,16 @@ function validateValues(){
         rError.textContent = "You have to choose at least one r!"
         haveErrors = true;
     }
-    const y_str = document.getElementById("y-value").value.trim();
-    const y =  parseFloat(y_str);
-    if (y_str === "" || isNaN(y)){
+    const yStr = document.getElementById("y-value").value.trim();
+    const y =  parseFloat(yStr);
+    if (yStr === ""){
         yError.textContent = "You must enter y!";
     }
-    else if(y_str.length !== y.toString().length){
-        yError.textContent = "Don't enter letters in this field!"
+    else if(isNaN(y)){
+        yError.textContent ="It must be float number!";
+    }
+    else if(yStr.search(/^-?[0-9]*\.?[0-9]*$/) === -1){
+        yError.textContent = "Don't enter extra letters or any other symbols!";
     }
     else {
         if(y <= -5 || y >= 3) {

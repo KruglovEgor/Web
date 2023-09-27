@@ -1,3 +1,5 @@
+import {showLastPage} from './pageHistory';
+
 window.addEventListener("load", () => {
     const savedHistory = JSON.parse(localStorage.getItem("history")) || [];
 
@@ -14,7 +16,6 @@ window.addEventListener("load", () => {
     if (savedX !== ""){
         const x_radio = document.getElementsByName("x-value");
         for(let i=0; i<x_radio.length; i++){
-            //todo search for the fix
             if(x_radio[i].value == parseInt(savedX)){
                 x_radio[i].checked = true;
             }
@@ -39,7 +40,7 @@ window.addEventListener("load", () => {
 
 });
 
-function saveToLocalStorage(json_record) {
+export function saveToLocalStorage(json_record) {
     const savedRecords = JSON.parse(localStorage.getItem("history")) || [];
     savedRecords.push(json_record);
     localStorage.setItem("history", JSON.stringify(savedRecords));

@@ -5,12 +5,7 @@
     <title>Lab1</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image" href="img/favicon.ico">
-    <script src="jsScripts/sender.js"></script>
-    <script src="jsScripts/history.js"></script>
-    <script src="jsScripts/localStorageScript.js"></script>
-    <script src="jsScripts/saveValuesOnUpdate.js"></script>
-    <script src="jsScripts/cleaner.js"></script>
-    <script src="jsScripts/pageHistory.js"></script>
+    <script src="bundle.js"></script>
 </head>
 <body>
 <table
@@ -35,47 +30,47 @@
 
                 <div class="parameter-name">x: </div> <br>
                 <div class="input-label">
-                    <input type="radio" name="x-value" value="-3" id="x=-3" onclick="saveLastX(-3)">
+                    <input type="radio" name="x-value" value="-3" id="x=-3">
                     <label for="x=-3">-3</label> <br>
                 </div>
 
                 <div class="input-label">
-                    <input type="radio" name="x-value" value="-2" id="x=-2" onclick="saveLastX(-2)">
+                    <input type="radio" name="x-value" value="-2" id="x=-2">
                     <label for="x=-2">-2</label> <br>
                 </div>
 
                 <div class="input-label">
-                    <input type="radio" name="x-value" value="-1" id="x=-1" onclick="saveLastX(-1)">
+                    <input type="radio" name="x-value" value="-1" id="x=-1">
                     <label for="x=-1">-1</label> <br>
                 </div>
 
                 <div class="input-label">
-                    <input type="radio" name="x-value" value="0" id="x=0" onclick="saveLastX(0)">
+                    <input type="radio" name="x-value" value="0" id="x=0">
                     <label for="x=0">0</label> <br>
                 </div>
 
                 <div class="input-label">
-                    <input type="radio" name="x-value" value="1" id="x=1" onclick="saveLastX(1)">
+                    <input type="radio" name="x-value" value="1" id="x=1">
                     <label for="x=1">1</label> <br>
                 </div>
 
                 <div class="input-label">
-                    <input type="radio" name="x-value" value="2" id="x=2" onclick="saveLastX(2)">
+                    <input type="radio" name="x-value" value="2" id="x=2">
                     <label for="x=2">2</label> <br>
                 </div>
 
                 <div class="input-label">
-                    <input type="radio" name="x-value" value="3" id="x=3" onclick="saveLastX(3)">
+                    <input type="radio" name="x-value" value="3" id="x=3">
                     <label for="x=3">3</label> <br>
                 </div>
 
                 <div class="input-label">
-                    <input type="radio" name="x-value" value="4" id="x=4" onclick="saveLastX(4)">
+                    <input type="radio" name="x-value" value="4" id="x=4">
                     <label for="x=4">4</label> <br>
                 </div>
 
                 <div class="input-label">
-                    <input type="radio" name="x-value" value="5" id="x=5" onclick="saveLastX(5)">
+                    <input type="radio" name="x-value" value="5" id="x=5">
                     <label for="x=5">5</label>
                 </div>
 
@@ -85,7 +80,7 @@
         <td width="16.66%">
             <div class="container" id="y-container">
                 <div class="parameter-name">y: </div> <br>
-                <input type="text" name="y-value" id="y-value" placeholder="(-5; 3)" maxlength="6" oninput="saveLastY()">
+                <input type="text" name="y-value" id="y-value" placeholder="(-5; 3)" maxlength="6">
                 <div class="error" id="y-error"></div>
             </div>
         </td>
@@ -95,31 +90,31 @@
 
                 <div class="input-label">
                     <label for="r=1">
-                        <input type="checkbox" name="r-value" id="r=1" value="1" onclick="saveLastR()"> 1 <br>
+                        <input type="checkbox" name="r-value" id="r=1" value="1"> 1 <br>
                     </label>
                 </div>
 
                 <div class="input-label">
                     <label for="r=1.5">
-                        <input type="checkbox" name="r-value" id="r=1.5" value="1.5" onclick="saveLastR()"> 1.5 <br>
+                        <input type="checkbox" name="r-value" id="r=1.5" value="1.5"> 1.5 <br>
                     </label>
                 </div>
 
                 <div class="input-label">
                     <label for="r=2">
-                        <input type="checkbox" name="r-value" id="r=2" value="2" onclick="saveLastR()"> 2 <br>
+                        <input type="checkbox" name="r-value" id="r=2" value="2"> 2 <br>
                     </label>
                 </div>
 
                 <div class="input-label">
                     <label for="r=2.5">
-                        <input type="checkbox" name="r-value" id="r=2.5" value="2.5" onclick="saveLastR()"> 2.5 <br>
+                        <input type="checkbox" name="r-value" id="r=2.5" value="2.5" > 2.5 <br>
                     </label>
                 </div>
 
                 <div class="input-label">
                     <label for="r=3">
-                        <input type="checkbox" name="r-value" id="r=3" value="3" onclick="saveLastR()"> 3 <br>
+                        <input type="checkbox" name="r-value" id="r=3" value="3"> 3 <br>
                     </label>
                 </div>
 
@@ -130,8 +125,8 @@
 </table>
 
 <div class="container" id="button-container">
-    <button id="send-button" onclick="validateValues()" class="bottom-button"> Check</button>
-    <button id="clear-button" onclick="cleanLocalStorageAndTable()" class="bottom-button">Clear</button>
+    <button id="send-button" class="bottom-button"> Check</button>
+    <button id="clear-button" class="bottom-button">Clear</button>
 </div>
 
 
@@ -155,8 +150,8 @@
     <span id="current-page" class="page-count">1</span><span id="separator" class="page-count">/</span><span id="last-page" class="page-count">1</span>
 </div>
 <div id="pagination">
-    <button id="prev-button" onclick="previousPage()"></button>
-    <button id="next-button" onclick="nextPage()"></button>
+    <button id="prev-button"></button>
+    <button id="next-button"></button>
 </div>
 
 </body>

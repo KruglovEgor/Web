@@ -1,5 +1,5 @@
 
-function addRecord(x, y, r, time, execution_time, hit) {
+export function addRecord(x, y, r, time, execution_time, hit) {
     const history = document.getElementById("history");
     const newRecord = document.createElement("tr");
 

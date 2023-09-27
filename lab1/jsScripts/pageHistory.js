@@ -1,3 +1,6 @@
+import {addRecord} from './history';
+import {cleanTable} from './cleaner';
+
 function moveNewPage(){
     cleanTable();
     const currentPage = document.getElementById("current-page");
@@ -30,7 +33,7 @@ function goToPage(number){
 
 
 
-function previousPage(){
+export function previousPage(){
     const currentPage = document.getElementById("current-page");
     const numberOfPage = parseInt(currentPage.textContent) - 1;
     if(numberOfPage >= 1){
@@ -39,7 +42,7 @@ function previousPage(){
     }
 }
 
-function nextPage() {
+export function nextPage() {
     const currentPage = document.getElementById("current-page");
     const lastPage = document.getElementById("last-page");
     const numberOfPage = parseInt(currentPage.textContent) + 1;
@@ -48,7 +51,7 @@ function nextPage() {
     }
 }
 
-function showLastPage(savedHistory){
+export function showLastPage(savedHistory){
     cleanTable();
     if(savedHistory.length % 10 === 0){
         if(savedHistory.length !== 0){
@@ -75,7 +78,7 @@ function showLastPage(savedHistory){
 }
 
 
-function newElementInHistory(x, y, r, time, execution_time, hit){
+export function newElementInHistory(x, y, r, time, execution_time, hit){
     const currentPage = document.getElementById("current-page");
     const lastPage = document.getElementById("last-page");
     if(currentPage.textContent !== lastPage.textContent){

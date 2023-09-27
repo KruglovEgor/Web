@@ -1,4 +1,4 @@
-function cleanLocalStorageAndTable(){
+export function cleanLocalStorageAndTable(){
     localStorage.removeItem("history");
     cleanTable();
     const currentPage = document.getElementById("current-page");
@@ -8,7 +8,7 @@ function cleanLocalStorageAndTable(){
 }
 
 
-function cleanTable(){
+export function cleanTable(){
     const history = document.getElementById("history");
     const lines = history.getElementsByTagName("tr");
     if (lines.length > 2){
