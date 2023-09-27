@@ -5,7 +5,7 @@ module.exports = {
     entry: './index.js', // Путь к вашему JavaScript-файлу
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname), // Путь для сохранения собранного файла
+        path: path.resolve(__dirname, "product"), // Путь для сохранения собранного файла
     },
     module: {
         rules: [
