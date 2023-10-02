@@ -1,0 +1,120 @@
+.column-name{
+    font-size: 20px;
+    font-style: italic;
+    text-align: center;
+}
+
+
+.input-label {
+    margin-left: 20%;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.bottom-button{
+    margin: 10px auto;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+#button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#send-button{
+    background-color: green;
+}
+
+#clear-button{
+    background-color: brown;
+}
+
+#send-button:hover {
+    background-color: darkgreen;
+}
+
+#clear-button:hover {
+    background-color: #821d1d;
+}
+
+
+.parameter-name{
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.green-text{
+    color: green;
+}
+
+.red-text{
+    color: red;
+}
+
+
+header{
+    text-align: center;
+    font-family: sans-serif;
+    color: black;
+    font-size: 20px;
+}
+
+.error{
+    margin-top: 10px;
+    font-size: 15px;
+    color: red;
+}
+
+#server-error{
+    text-align: center;
+    width: 100%;
+}
+
+#counter-container{
+    margin-top: 10px;
+}
+
+.page-count {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+#pagination {
+    margin-top: 5px;
+}
+
+#pagination button{
+    background-color: #007BFF;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#prev-button::before {
+    content: "\2190"; /* Символ стрелочки влево */
+    margin-right: 5px;
+}
+
+#next-button::after {
+    content: "\2192"; /* Символ стрелочки вправо */
+    margin-left: 5px;
+}
+
+#pagination button:hover {
+    background-color: #0056b3;
+}
