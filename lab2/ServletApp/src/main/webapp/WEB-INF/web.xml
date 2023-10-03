@@ -10,7 +10,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>area-checker</servlet-name>
-        <url-pattern>/check</url-pattern>
+        <url-pattern>/area-checker</url-pattern>
     </servlet-mapping>
 
     <servlet>

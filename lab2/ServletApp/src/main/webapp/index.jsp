@@ -2,28 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lab1</title>
+    <title>Lab2</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image" href="img/favicon.ico">
+    <script src="scripts/cleaner.js"></script>
+    <script src="scripts/event.js"></script>
+    <script src="scripts/history.js"></script>
+    <script src="scripts/workingWithLocalStorage/onLoad.js"></script>
+    <script src="scripts/pageHistory.js"></script>
+    <script src="scripts/workingWithLocalStorage/saveValuesOnUpdate.js"></script>
+    <script src="scripts/sender.js"></script>
+    <script src="scripts/validator.js"></script>
+    <script src="scripts/imgClick.js"></script>
 </head>
 <body>
 
 <header>Kruglov Egor, P3224 <br> Variant: 3408</header>
-
 <form method="POST">
     <div>
         <div class="parameter-name">x: </div> <br>
-        <select id="x-value">
-            <option>-5</option>
-            <option>-4</option>
-            <option>-3</option>
-            <option>-2</option>
-            <option>-1</option>
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+        <select id="x-value" id="x-value">
+            <option value=-5 name="x-value">-5</option>
+            <option value=-4 name="x-value">-4</option>
+            <option value=-3 name="x-value">-3</option>
+            <option value=-2 name="x-value">-2</option>
+            <option value=-1 name="x-value">-1</option>
+            <option value=0 name="x-value">0</option>
+            <option value=1 name="x-value">1</option>
+            <option value=2 name="x-value">2</option>
+            <option value=3 name="x-value">3</option>
         </select>
+        <div class="error" id="x-error"></div>
     </div>
 
     <div>
@@ -41,7 +50,7 @@
 
 
 
-<img src="img/Lab2.svg" alt="Graphic">
+<img src="img/Lab2.svg" alt="Graphic" id="graphic" width="80%">
 
 
 <div id="button-container">
@@ -53,14 +62,13 @@
 
 <table border="1" cellpadding="0" cellspacing="0" width="100%" id="history">
     <tr>
-        <td colspan="6" class="column-name">History</td>
+        <td colspan="5" class="column-name">History</td>
     </tr>
     <tr>
         <td class="column-name">x</td>
         <td class="column-name">y</td>
         <td class="column-name">R</td>
         <td class="column-name">Time</td>
-        <td class="column-name">Execution (microsecond)</td>
         <td class="column-name">Hit</td>
     </tr>
 </table>

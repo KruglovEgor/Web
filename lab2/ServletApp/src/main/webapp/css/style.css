@@ -6,8 +6,6 @@
 
 
 .input-label {
-    margin-left: 20%;
-    margin-top: 5px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
