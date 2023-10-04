@@ -1,12 +1,13 @@
 const xValues = ["-5", "-4", "-3", "-2", "-1", "0", "1", "2", "3"];
-const floatRegex = "^-?\\d+\\.?\\d*$";
+const floatRegexString = "^-?\\d+\\.?\\d*$";
+const floatRegex = new RegExp(floatRegexString);
 
 function validateX(x){
     return xValues.includes(x);
 }
 
 function validateY(y){
-    if (y.search(floatRegex)){
+    if (floatRegex.test(y)) {
         const yFloat = parseFloat(y);
         return -5<yFloat && yFloat<3;
     }
@@ -16,7 +17,7 @@ function validateY(y){
 }
 
 function validateR(r){
-    if (r.search(floatRegex)){
+    if (floatRegex.test(r)){
         const rFloat = parseFloat(r);
         return 2<rFloat && rFloat<5;
     }
@@ -41,6 +42,10 @@ function validateValues(x, y, r){
         const rError = document.getElementById("r-error");
         rError.textContent = "There is problem with R! It must be float (2<r<5).";
         isOk = false;
+    }
+
+    if(isOk){
+        //todo sendValues in number format
     }
     return isOk;
 }
