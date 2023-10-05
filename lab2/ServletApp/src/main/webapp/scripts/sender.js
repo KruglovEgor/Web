@@ -4,7 +4,7 @@ async function sendValues(x, y, r) {
     formData.append("x", x);
     formData.append("y", y);
     formData.append("r", r);
-    const path = "phpScripts/main.php";
+    const path = "/controller";
 
     try {
         const response = await fetch(path, {
@@ -18,8 +18,9 @@ async function sendValues(x, y, r) {
         }
         else {
             const data = await response.json();
-            newElementInHistory(data.x, data.y, data.r, data.time, data.execution_time, data.hit);
-            saveToLocalStorage(data);
+            console.log(data);
+            //newElementInHistory(data.x, data.y, data.r, data.time, data.execution_time, data.hit);
+            //saveToLocalStorage(data);
         }
     }
 

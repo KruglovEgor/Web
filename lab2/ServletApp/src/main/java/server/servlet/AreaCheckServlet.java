@@ -1,4 +1,4 @@
-package server;
+package server.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +14,8 @@ public class AreaCheckServlet extends HttpServlet {
     String floatRegex = "^-?\\d+\\.?\\d*$";
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        long start = System.nanoTime();
+
         String xInput = req.getParameter("x");
         String yInput = req.getParameter("y");
         String rInput = req.getParameter("r");
@@ -23,9 +25,9 @@ public class AreaCheckServlet extends HttpServlet {
                 int x = Integer.parseInt(xInput);
                 float y = Float.parseFloat(yInput);
                 float r = Float.parseFloat(rInput);
-
                 boolean hit = inSecondQuarter(x, y, r) || inThirdQuarter(x, y, r) || inForthQuarter(x, y, r);
 
+                long executionTime = (System.nanoTime() - start) / 1000;
 
                 //todo finish
             }

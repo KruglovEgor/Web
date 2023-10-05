@@ -1,4 +1,4 @@
-package server;
+package server.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +17,7 @@ public class ControllerServlet extends HttpServlet {
         String r = req.getParameter("r");
 
         if ((x != null && y != null && r != null) && ((x.trim().length() != 0) && (y.trim().length() != 0) && (r.trim().length() != 0))){
-            req.getRequestDispatcher("./area-checker").forward(req, resp);
+            req.getRequestDispatcher("/area-checker").forward(req, resp);
         }
         else {
             resp.sendError(400);

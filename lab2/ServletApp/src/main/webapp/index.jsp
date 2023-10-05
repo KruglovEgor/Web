@@ -62,13 +62,14 @@
 
 <table border="1" cellpadding="0" cellspacing="0" width="100%" id="history">
     <tr>
-        <td colspan="5" class="column-name">History</td>
+        <td colspan="6" class="column-name">History</td>
     </tr>
     <tr>
         <td class="column-name">x</td>
         <td class="column-name">y</td>
         <td class="column-name">R</td>
         <td class="column-name">Time</td>
+        <td class="column-name">Execution</td>
         <td class="column-name">Hit</td>
     </tr>
 </table>
