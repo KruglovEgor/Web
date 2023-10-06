@@ -41,7 +41,7 @@ function validateInputValues(x, y, r){
     }
 
     if(isOk){
-        sendValues(parseInt(x), parseFloat(y), parseFloat(r), "");
+        sendValues(parseInt(x), parseFloat(y), parseFloat(r), "input");
     }
     return isOk;
 }

@@ -1,4 +1,7 @@
 
+//todo разобраться с ответом (почему не отрисовывается)
+
+
 async function sendValues(x, y, r, type) {
     const path = "./controller";
     const data = new URLSearchParams();
@@ -22,9 +25,6 @@ async function sendValues(x, y, r, type) {
         }
         else {
             console.log(response.text());
-            //const data = await response.json();
-            //newElementInHistory(data.x, data.y, data.r, data.time, data.execution_time, data.hit);
-            //saveToLocalStorage(data);
         }
     }
 

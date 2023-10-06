@@ -18,11 +18,7 @@ public class ControllerServlet extends HttpServlet {
         String y = req.getParameter("y");
         String r = req.getParameter("r");
         String type = req.getParameter("type");
-//        PrintWriter out = resp.getWriter();
-//        out.println("Received x: " + x);
-//        out.println("Received y: " + y);
-//        out.println("Received r: " + r);
-//        resp.setContentType("text/plain;charset=UTF-8");
+
 
 
         if ((x != null && y != null && r != null && type != null) && ((!x.trim().isEmpty()) && (!y.trim().isEmpty()) && (!r.trim().isEmpty()) && (!type.trim().isEmpty()))){

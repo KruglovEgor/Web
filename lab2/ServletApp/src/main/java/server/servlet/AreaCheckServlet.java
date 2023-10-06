@@ -9,16 +9,21 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static server.data.validation.Validator.validate;
+
 
 //@WebServlet(urlPatterns = {"/area-checker"})
 public class AreaCheckServlet extends HttpServlet {
     String floatRegex = "^-?\\d+\\.?\\d*$";
+
+    //todo разобраться с ответом (почему не отрисовывается)
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long start = System.nanoTime();
@@ -29,8 +34,11 @@ public class AreaCheckServlet extends HttpServlet {
         String rInput = req.getParameter("r").trim();
         String type = req.getParameter("type").trim();
 
-        //todo change validation according to type
-        if(validateX(xInput) && validateY(yInput) && validateR(rInput)){
+        PrintWriter out = resp.getWriter();
+        resp.setContentType("text/plain;charset=UTF-8");
+
+
+        if(validate(xInput, yInput, rInput, type)){
             float x = Float.parseFloat(xInput);
             float y = Float.parseFloat(yInput);
             float r = Float.parseFloat(rInput);
@@ -42,42 +50,19 @@ public class AreaCheckServlet extends HttpServlet {
 
             List<Result> history = (List<Result>) httpSession.getAttribute("history");
             if(history == null){
-                history = new ArrayList<Result>();
+                history = new ArrayList<>();
                 httpSession.setAttribute("history", history);
             }
             history.add(result);
+            out.println("Success!");
         }
-        //todo finish
         else {
-                
-            }
-        //todo finish
-    }
-
-
-    //todo add validation for click values
-
-    private boolean validateX(String input){
-        final String[] availableValues = {"-5", "-4", "-3", "-2", "-1", "0", "1", "2", "3"};
-        return Arrays.asList(availableValues).contains(input.trim());
-    }
-
-    private boolean validateY(String input){
-        if (input.trim().matches(floatRegex)){
-            float y = Float.parseFloat(input.trim());
-            return -5 < y && y < 3;
+            out.println("There are problems with values! Try to resend packet.");
+            //todo check code according to the 1st lab
+            resp.sendError(403);
         }
-        return false;
     }
 
-
-    private boolean validateR(String input){
-        if (input.trim().matches(floatRegex)){
-            float r = Float.parseFloat(input.trim());
-            return 2 < r && r < 5;
-        }
-        return false;
-    }
 
     private boolean inSecondQuarter(float x, float y, float r){
         return (-r <= x && x <= 0) && (0 <= y && y <=r);
