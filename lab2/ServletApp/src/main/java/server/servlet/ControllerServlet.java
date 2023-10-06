@@ -17,6 +17,7 @@ public class ControllerServlet extends HttpServlet {
         String x = req.getParameter("x");
         String y = req.getParameter("y");
         String r = req.getParameter("r");
+        String type = req.getParameter("type");
 //        PrintWriter out = resp.getWriter();
 //        out.println("Received x: " + x);
 //        out.println("Received y: " + y);
@@ -24,10 +25,13 @@ public class ControllerServlet extends HttpServlet {
 //        resp.setContentType("text/plain;charset=UTF-8");
 
 
-        if ((x != null && y != null && r != null) && ((x.trim().length() != 0) && (y.trim().length() != 0) && (r.trim().length() != 0))){
+        if ((x != null && y != null && r != null && type != null) && ((!x.trim().isEmpty()) && (!y.trim().isEmpty()) && (!r.trim().isEmpty()) && (!type.trim().isEmpty()))){
             req.getRequestDispatcher("/area-checker").forward(req, resp);
         }
         else {
+            PrintWriter out = resp.getWriter();
+            out.println("We got not full packet! Try to resend it.");
+            resp.setContentType("text/plain;charset=UTF-8");
             resp.sendError(400);
         }
     }

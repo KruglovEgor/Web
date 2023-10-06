@@ -9,13 +9,17 @@
     <link rel="icon" type="image" href="img/favicon.ico">
     <script src="scripts/cleaner.js"></script>
     <script src="scripts/event.js"></script>
-    <script src="scripts/history.js"></script>
-    <script src="scripts/workingWithLocalStorage/onLoad.js"></script>
-    <script src="scripts/pageHistory.js"></script>
-    <script src="scripts/workingWithLocalStorage/saveValuesOnUpdate.js"></script>
-    <script src="scripts/sender.js"></script>
-    <script src="scripts/validator.js"></script>
     <script src="scripts/imgClick.js"></script>
+    <script src="scripts/pageHistory.js"></script>
+    <script src="scripts/sender.js"></script>
+
+    <script src="scripts/validation/clickValidator.js"></script>
+    <script src="scripts/validation/inputValidator.js"></script>
+    <script src="scripts/validation/validator.js"></script>
+
+    <script src="scripts/workingWithLocalStorage/onLoad.js"></script>
+    <script src="scripts/workingWithLocalStorage/saveValuesOnUpdate.js"></script>
+
 </head>
 <body>
 

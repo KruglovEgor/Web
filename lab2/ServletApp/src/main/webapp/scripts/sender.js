@@ -1,7 +1,8 @@
 
-async function sendValues(x, y, r) {
+async function sendValues(x, y, r, type) {
     const path = "./controller";
     const data = new URLSearchParams();
+    data.append("type", type);
     data.append("x", x);
     data.append("y", y);
     data.append("r", r);

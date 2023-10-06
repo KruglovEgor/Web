@@ -24,34 +24,33 @@ public class AreaCheckServlet extends HttpServlet {
         long start = System.nanoTime();
         String currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
-        String xInput = req.getParameter("x");
-        String yInput = req.getParameter("y");
-        String rInput = req.getParameter("r");
+        String xInput = req.getParameter("x").trim();
+        String yInput = req.getParameter("y").trim();
+        String rInput = req.getParameter("r").trim();
+        String type = req.getParameter("type").trim();
 
-        if (xInput != null && yInput != null && rInput != null){
-            if(validateX(xInput) && validateY(yInput) && validateR(rInput)){
-                float x = Float.parseFloat(xInput);
-                float y = Float.parseFloat(yInput);
-                float r = Float.parseFloat(rInput);
-                boolean hit = inSecondQuarter(x, y, r) || inThirdQuarter(x, y, r) || inForthQuarter(x, y, r);
-                long executionTime = (System.nanoTime() - start) / 1000;
+        //todo change validation according to type
+        if(validateX(xInput) && validateY(yInput) && validateR(rInput)){
+            float x = Float.parseFloat(xInput);
+            float y = Float.parseFloat(yInput);
+            float r = Float.parseFloat(rInput);
+            boolean hit = inSecondQuarter(x, y, r) || inThirdQuarter(x, y, r) || inForthQuarter(x, y, r);
+            long executionTime = (System.nanoTime() - start) / 1000;
 
-                Result result = new Result(x, y, r, currentTime, executionTime, hit);
-                HttpSession httpSession = req.getSession(true);
+            Result result = new Result(x, y, r, currentTime, executionTime, hit);
+            HttpSession httpSession = req.getSession(true);
 
-                List<Result> history = (List<Result>) httpSession.getAttribute("history");
-                if(history == null){
-                    history = new ArrayList<Result>();
-                    httpSession.setAttribute("history", history);
-                }
-                history.add(result);
+            List<Result> history = (List<Result>) httpSession.getAttribute("history");
+            if(history == null){
+                history = new ArrayList<Result>();
+                httpSession.setAttribute("history", history);
             }
-            else {
+            history.add(result);
+        }
+        //todo finish
+        else {
                 
             }
-        }else {
-
-        }
         //todo finish
     }
 
