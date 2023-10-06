@@ -45,7 +45,7 @@ function validateValues(x, y, r){
     }
 
     if(isOk){
-        //todo sendValues in number format
+        sendValues(parseInt(x), parseFloat(y), parseFloat(r));
     }
     return isOk;
 }

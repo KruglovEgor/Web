@@ -1,4 +1,6 @@
 
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
 
@@ -25,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const sendButton = document.getElementById("send-button");
     sendButton.addEventListener('click', function () {
-        validateValues();
+        validateValues(xValueInput.value, yValueInput.value, rValueInput.value);
     })
 
     const cleanButton = document.getElementById("clear-button");

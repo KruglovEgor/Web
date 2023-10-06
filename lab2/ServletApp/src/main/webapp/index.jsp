@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,6 +74,16 @@
         <td class="column-name">Execution</td>
         <td class="column-name">Hit</td>
     </tr>
+    <c:forEach items="${sessionScope.requestHistory}" var="result">
+        <tr>
+            <td>${result.x}</td>
+            <td>${result.y}</td>
+            <td>${result.r}</td>
+            <td>${result.time}</td>
+            <td>${result.executionTime} мс</td>
+            <td>${result.hit ? 'TRUE' : 'FALSE'}</td>
+        </tr>
+    </c:forEach>
 </table>
 
 <div id="counter-container">
