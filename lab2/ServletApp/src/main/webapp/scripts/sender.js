@@ -23,7 +23,9 @@ async function sendValues(x, y, r, type) {
             const json = await response.json();
             myHistory.push(json);
             newElementInHistory(json.x, json.y, json.r, json.time, json.executionTime, json.hit);
-            //todo draw point
+            points.push([json.x, json.y]);
+            rGraphic.value = rValueInput.value;
+            resizeGraphic(rGraphic.value);
         }
     }
 

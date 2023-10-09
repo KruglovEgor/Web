@@ -26,7 +26,7 @@
     <script src="scripts/validation/inputValidator.js"></script>
     <script src="scripts/validation/validator.js"></script>
 
-    <script src="scripts/workingWithLocalStorage/onLoad.js"></script>
+    <script src="scripts/onLoad.js"></script>
     <script src="scripts/workingWithLocalStorage/saveValuesOnUpdate.js"></script>
 
 </head>
@@ -70,13 +70,16 @@
     </tr>
     <tr>
         <td width="70%">
-            <img src="img/Lab2.svg" alt="Graphic" id="graphic" width="100%">
+            <div id="overlay-container" style="position: relative; width: 100%; height: 100%;">
+                <svg id="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></svg>
+                <img src="img/Lab2.svg" alt="Graphic" id="graphic" style="width: 100%;">
+            </div>
         </td>
         <td>
-            <label for="r-graphic">Write R to rebuild graphic:</label>
+            <label for="r-graphic">R of graphic:</label>
             <input type="text" name="r-graphic" id="r-graphic" placeholder="(2; 5)" maxlength="6">
             <div class="error" id="r-graphic-error"></div>
-            <button id="rebuild-graphic-button"></button>
+            <button id="resize-graphic-button">Resize</button>
         </td>
     </tr>
 </table>
@@ -86,7 +89,7 @@
 
 <div id="button-container">
     <button id="send-button" class="bottom-button"> Check</button>
-    <button id="clear-button" class="bottom-button">Clear</button>
+    <button id="clean-button" class="bottom-button">Clear</button>
 </div>
 
 <div class="error" id="server-error"></div>

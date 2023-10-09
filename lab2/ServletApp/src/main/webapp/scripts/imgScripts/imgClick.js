@@ -1,9 +1,5 @@
 //we have 5/2=2.5 radius in width and height
 const rScale = 2.5;
-
-
-
-
 function checkHitByClick(event){
 
     if(validateR(rValueInput.value)){

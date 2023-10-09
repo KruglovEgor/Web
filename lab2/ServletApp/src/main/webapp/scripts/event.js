@@ -9,7 +9,10 @@ let rError;
 let serverError;
 let yValueInput;
 let xValueInput;
-let rValueInput
+let rValueInput;
+let rGraphicError;
+let rGraphic;
+let overlay;
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -40,13 +43,21 @@ document.addEventListener("DOMContentLoaded", function () {
         saveLastX(this.value);
     });
 
+    rGraphic = document.getElementById("r-graphic");
+    rGraphicError = document.getElementById("r-graphic-error");
+    overlay = document.getElementById("overlay");
+
+    const resizeButton = document.getElementById("resize-graphic-button");
+    resizeButton.addEventListener('click', function (){
+        resizeGraphic(rGraphic.value);
+    })
 
     const sendButton = document.getElementById("send-button");
     sendButton.addEventListener('click', function () {
         validateInputValues(xValueInput.value, yValueInput.value, rValueInput.value);
     })
 
-    const cleanButton = document.getElementById("clear-button");
+    const cleanButton = document.getElementById("clean-button");
     cleanButton.addEventListener('click', function () {
         cleanSessionAndTable();
     })

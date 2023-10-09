@@ -24,10 +24,10 @@ function cleanTable(){
 
 
 function clenPoints(){
-    const points = graphic.querySelectorAll("circle");
-
-    for(const point of points){
-        graphic.removeChild(point);
+    const pointsOnGraphic = overlay.querySelectorAll("circle");
+    points = [];
+    for(const point of pointsOnGraphic){
+        overlay.removeChild(point);
     }
 
 }

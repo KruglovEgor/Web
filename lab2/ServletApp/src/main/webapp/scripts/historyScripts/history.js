@@ -32,8 +32,8 @@ function drawRecord(x, y, r, time, execution_time, hit) {
     newRecord.appendChild(executionCell);
 
     const hitCell = document.createElement("th");
-    hitCell.textContent = hit.toUpperCase();
-    if(hit === "true"){
+    hitCell.textContent = hit;
+    if(hit){
         hitCell.classList.add("green-text");
     }
     else {

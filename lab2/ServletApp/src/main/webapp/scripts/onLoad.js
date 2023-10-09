@@ -1,7 +1,10 @@
+const defaultR = 4;
+
 window.addEventListener("load", () => {
 
     lastPage.textContent = Math.max(Math.ceil(myHistory.length / 10), 1);
     goToPage(Math.max(Math.ceil(myHistory.length / 10), 1));
+
 
     const savedX = JSON.parse(localStorage.getItem("x")) || "";
     const savedY = JSON.parse(localStorage.getItem("y")) || "";
@@ -23,5 +26,11 @@ window.addEventListener("load", () => {
 
     if (savedR !== ""){
         rValueInput.value = savedR;
+        rGraphic.value = savedR;
+        resizeGraphic(savedR);
+    }
+    else {
+        rGraphic.value = defaultR;
+        resizeGraphic(defaultR);
     }
 });
