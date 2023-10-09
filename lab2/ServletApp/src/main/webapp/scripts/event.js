@@ -1,23 +1,41 @@
-
+let historyTable;
+let currentPage;
+let lastPage;
+let myHistory;
+let graphic;
+let xError;
+let yError;
+let rError;
+let serverError;
+let yValueInput;
+let xValueInput;
+let rValueInput
 
 
 document.addEventListener("DOMContentLoaded", function () {
 
+    historyTable = document.getElementById("history");
+    currentPage = document.getElementById("current-page");
+    lastPage = document.getElementById("last-page");
 
-    const img = document.getElementById("graphic");
-    img.addEventListener('click', function (event) {
+    graphic = document.getElementById("graphic");
+    graphic.addEventListener('click', function (event) {
         checkHitByClick(event);
     })
 
+    xError = document.getElementById("x-error");
+    yError = document.getElementById("y-error");
+    rError = document.getElementById("r-error");
+    serverError = document.getElementById("server-error");
 
-    const yValueInput = document.getElementById("y-value");
+    yValueInput = document.getElementById("y-value");
     yValueInput.addEventListener("input", saveLastY);
 
-    const rValueInput = document.getElementById("r-value");
+    rValueInput = document.getElementById("r-value");
     rValueInput.addEventListener("input", saveLastR);
 
 
-    const xValueInput = document.getElementById("x-value");
+    xValueInput = document.getElementById("x-value");
     xValueInput.addEventListener("change", function () {
         saveLastX(this.value);
     });

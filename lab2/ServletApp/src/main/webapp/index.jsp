@@ -15,7 +15,7 @@
     <script src="scripts/event.js"></script>
     <script src="scripts/sender.js"></script>
 
-    <script src="scripts/historyScripts/cleaner.js"></script>
+    <script src="scripts/cleaner.js"></script>
     <script src="scripts/historyScripts/history.js"></script>
     <script src="scripts/historyScripts/pageHistory.js"></script>
 
@@ -64,8 +64,24 @@
 </form>
 
 
+<table id="graphic-table">
+    <tr>
+        <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td width="70%">
+            <img src="img/Lab2.svg" alt="Graphic" id="graphic" width="100%">
+        </td>
+        <td>
+            <label for="r-graphic">Write R to rebuild graphic:</label>
+            <input type="text" name="r-graphic" id="r-graphic" placeholder="(2; 5)" maxlength="6">
+            <div class="error" id="r-graphic-error"></div>
+            <button id="rebuild-graphic-button"></button>
+        </td>
+    </tr>
+</table>
 
-<img src="img/Lab2.svg" alt="Graphic" id="graphic" width="80%">
+
 
 
 <div id="button-container">

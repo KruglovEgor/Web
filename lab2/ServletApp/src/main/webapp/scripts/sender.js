@@ -28,7 +28,6 @@ async function sendValues(x, y, r, type) {
     }
 
     catch (error) {
-        const serverError = document.getElementById("server-error");
         serverError.textContent = error;
     }
 }

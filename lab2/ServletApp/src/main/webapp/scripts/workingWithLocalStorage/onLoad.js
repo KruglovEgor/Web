@@ -8,10 +8,8 @@ window.addEventListener("load", () => {
     const savedR = JSON.parse(localStorage.getItem("r")) || "";
     
     if (savedX !== ""){
-        const xValues = document.getElementById("x-value");
-        for(let i=0; i<xValues.options.length; i++){
-            const option = xValues.options[i];
-
+        for(let i=0; i<xValueInput.options.length; i++){
+            const option = xValueInput.options[i];
             if(parseInt(option.value) === parseInt(savedX)){
                 option.selected = true;
                 break;
@@ -20,12 +18,10 @@ window.addEventListener("load", () => {
     }
 
     if (savedY !== ""){
-        const yValue = document.getElementById("y-value");
-        yValue.value = savedY;
+        yValueInput.value = savedY;
     }
 
     if (savedR !== ""){
-        const rValue = document.getElementById("r-value");
-        rValue.value = savedR;
+        rValueInput.value = savedR;
     }
 });

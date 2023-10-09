@@ -1,19 +1,4 @@
-let historyTable;
-let currentPage;
-let lastPage;
-let myHistory;
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    historyTable = document.getElementById("history");
-    currentPage = document.getElementById("current-page");
-    lastPage = document.getElementById("last-page");
-});
-
-
 function newElementInHistory(x, y, r, time, executionTime, hit){
-    const currentPage = document.getElementById("current-page");
-    const lastPage = document.getElementById("last-page");
     if(currentPage.textContent !== lastPage.textContent){
         goToPage(parseInt(lastPage.textContent))
     }
@@ -25,7 +10,6 @@ function newElementInHistory(x, y, r, time, executionTime, hit){
 }
 
 function drawRecord(x, y, r, time, execution_time, hit) {
-
     const newRecord = document.createElement("tr");
     const xCell = document.createElement("th");
     xCell.textContent = x;
