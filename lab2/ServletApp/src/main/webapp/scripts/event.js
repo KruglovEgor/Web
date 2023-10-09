@@ -23,8 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-
-
     const sendButton = document.getElementById("send-button");
     sendButton.addEventListener('click', function () {
         validateInputValues(xValueInput.value, yValueInput.value, rValueInput.value);
@@ -32,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const cleanButton = document.getElementById("clear-button");
     cleanButton.addEventListener('click', function () {
-        cleanLocalStorageAndTable();
+        cleanSessionAndTable();
     })
 
     const previousButton = document.getElementById("prev-button");

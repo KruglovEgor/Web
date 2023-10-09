@@ -1,14 +1,16 @@
 package server.data;
 
-import java.util.Date;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Result {
-    private float x;
-    private float y;
-    private  float r;
-    private String time;
-    private long executionTime;
-    private boolean hit;
+    public float x;
+    public float y;
+    public  float r;
+    public String time;
+    public long executionTime;
+    public boolean hit;
 
     public Result(float x, float y, float r, String time, long executionTime, boolean hit){
         this.x = x;
@@ -17,5 +19,29 @@ public class Result {
         this.time = time;
         this.executionTime = executionTime;
         this.hit = hit;
+    }
+
+    //add function to convert to json
+    public String toJson(){
+        return "{" +
+                "\"x\":" + x +
+                ", \"y\":" + y +
+                ", \"r\":" + r +
+                ", \"time\":\"" + time + "\"" +
+                ", \"executionTime\":" + executionTime +
+                ", \"hit\":" + hit +
+                "}";
+    }
+
+
+    public Map<String, Object> toMap(){
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("x", x);
+        result.put("y", y);
+        result.put("r", r);
+        result.put("time", time);
+        result.put("executionTime", executionTime);
+        result.put("hit", hit);
+        return result;
     }
 }

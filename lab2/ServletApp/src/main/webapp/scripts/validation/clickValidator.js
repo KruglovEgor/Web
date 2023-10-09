@@ -2,7 +2,7 @@ function validateClickCoordinate(coordinate, r){
     if (floatRegex.test(coordinate)) {
         const coordinateFloat = parseFloat(coordinate);
         const rValue = parseFloat(r);
-        return (-1.25*rValue<coordinateFloat && coordinateFloat<1.25*rValue) && (-1.25*rValue<yFloat && yFloat<1.25*rValue);
+        return (-1.25*rValue<coordinateFloat && coordinateFloat<1.25*rValue);
     }
     else {
         return false;
@@ -21,7 +21,7 @@ function validateClickValues(x, y, r){
             isOk = false;
         }
         if(!validateClickCoordinate(y, r)){
-            yError.textContent = "There is problem with y! It must be float (-5<y<3)."
+            yError.textContent = "There is problem with y! Try to update the page."
             isOk = false;
         }
     }

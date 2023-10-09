@@ -1,9 +1,7 @@
 window.addEventListener("load", () => {
 
-
-    //todo add working with history
-    const lastPage = document.getElementById("last-page");
-    const currentPage = document.getElementById("current-page");
+    lastPage.textContent = Math.max(Math.ceil(myHistory.length / 10), 1);
+    goToPage(Math.max(Math.ceil(myHistory.length / 10), 1));
 
     const savedX = JSON.parse(localStorage.getItem("x")) || "";
     const savedY = JSON.parse(localStorage.getItem("y")) || "";

@@ -1,12 +1,14 @@
-function cleanLocalStorageAndTable(){
-    localStorage.removeItem("x");
-    localStorage.removeItem("y");
-    localStorage.removeItem("r");
+function cleanSessionAndTable(){
     cleanTable();
-    const currentPage = document.getElementById("current-page");
-    const lastPage = document.getElementById("last-page");
     currentPage.textContent = 1;
     lastPage.textContent = 1;
+    myHistory = [];
+    const response =  fetch("./clean-session", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+    });
 }
 
 

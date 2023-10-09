@@ -22,6 +22,17 @@
         <url-pattern>/controller</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>clean-session</servlet-name>
+        <servlet-class>server.servlet.CleanSessionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>clean-session</servlet-name>
+        <url-pattern>/clean-session</url-pattern>
+    </servlet-mapping>
+
+
+
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>

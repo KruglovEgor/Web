@@ -1,4 +1,8 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="server.data.Result" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.google.gson.Gson" %>
+<%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,11 +11,16 @@
     <title>Lab2</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image" href="img/favicon.ico">
-    <script src="scripts/cleaner.js"></script>
+
     <script src="scripts/event.js"></script>
-    <script src="scripts/imgClick.js"></script>
-    <script src="scripts/pageHistory.js"></script>
     <script src="scripts/sender.js"></script>
+
+    <script src="scripts/historyScripts/cleaner.js"></script>
+    <script src="scripts/historyScripts/history.js"></script>
+    <script src="scripts/historyScripts/pageHistory.js"></script>
+
+    <script src="scripts/imgScripts/imgClick.js"></script>
+    <script src="scripts/imgScripts/drawPoint.js"></script>
 
     <script src="scripts/validation/clickValidator.js"></script>
     <script src="scripts/validation/inputValidator.js"></script>
@@ -78,16 +87,20 @@
         <td class="column-name">Execution</td>
         <td class="column-name">Hit</td>
     </tr>
-    <c:forEach items="${sessionScope.requestHistory}" var="result">
-        <tr>
-            <td>${result.x}</td>
-            <td>${result.y}</td>
-            <td>${result.r}</td>
-            <td>${result.time}</td>
-            <td>${result.executionTime} мс</td>
-            <td>${result.hit ? 'TRUE' : 'FALSE'}</td>
-        </tr>
-    </c:forEach>
+    <%
+        HttpSession ourSession = request.getSession();
+        List<Result> history = (List<Result>) ourSession.getAttribute("history");
+        Gson gson = new Gson();
+        String historyInJson = "[]";
+        if (history != null && !history.isEmpty()) {
+            historyInJson = gson.toJson(history);
+        }
+    %>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                myHistory = <%= historyInJson %>;
+            });
+        </script>
 </table>
 
 <div id="counter-container">

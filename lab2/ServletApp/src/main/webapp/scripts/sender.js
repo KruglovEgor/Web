@@ -1,7 +1,3 @@
-
-//todo разобраться с ответом (почему не отрисовывается)
-
-
 async function sendValues(x, y, r, type) {
     const path = "./controller";
     const data = new URLSearchParams();
@@ -24,7 +20,10 @@ async function sendValues(x, y, r, type) {
             throw new Error(errorMessage);
         }
         else {
-            console.log(response.text());
+            const json = await response.json();
+            myHistory.push(json);
+            newElementInHistory(json.x, json.y, json.r, json.time, json.executionTime, json.hit);
+            //todo draw point
         }
     }
 

@@ -23,7 +23,6 @@ import static server.data.validation.Validator.validate;
 public class AreaCheckServlet extends HttpServlet {
     String floatRegex = "^-?\\d+\\.?\\d*$";
 
-    //todo разобраться с ответом (почему не отрисовывается)
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long start = System.nanoTime();
@@ -54,7 +53,7 @@ public class AreaCheckServlet extends HttpServlet {
                 httpSession.setAttribute("history", history);
             }
             history.add(result);
-            out.println("Success!");
+            out.println(result.toJson());
         }
         else {
             out.println("There are problems with values! Try to resend packet.");
