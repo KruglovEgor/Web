@@ -2,7 +2,6 @@
 //todo maybe combine different listeners
 //todo maybe change names of files and directories
 //todo maybe add bundle
-let points = [];
 
 function drawPoint(xValue, yValue, rValue){
     const point = document.createElementNS("http://www.w3.org/2000/svg", "circle");
@@ -16,9 +15,12 @@ function drawPoint(xValue, yValue, rValue){
     point.setAttribute("cy", yCircle+"%");
     point.setAttribute("r", radiusCircle.toString());
     point.setAttribute("fill", "red");
+    point.setAttribute("data-info", "x="+xValue+"\ny="+yValue);
 
-    console.log(point);
     overlay.appendChild(point);
+    circles.push(point);
+    point.addEventListener("mouseenter", showInfo(point));
+    point.addEventListener("mouseleave", hideInfo);
 }
 
 
@@ -28,7 +30,6 @@ function resizeGraphic(r){
     clenPoints();
     for (const point of points){
         if(isPointFitsGraphic(point[0], point[1], rValue)){
-            console.log(point[0], point[1], rValue);
             drawPoint(point[0], point[1], rValue);
         }
     }

@@ -13,6 +13,9 @@ let rValueInput;
 let rGraphicError;
 let rGraphic;
 let overlay;
+let points = [];
+let circles = [];
+let infoBox;
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -47,6 +50,9 @@ document.addEventListener("DOMContentLoaded", function () {
     rGraphicError = document.getElementById("r-graphic-error");
     overlay = document.getElementById("overlay");
 
+    infoBox = document.getElementById("info-box")
+
+
     const resizeButton = document.getElementById("resize-graphic-button");
     resizeButton.addEventListener('click', function (){
         rGraphicError.textContent = "";
@@ -55,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             rGraphicError.textContent = "There is problem with R. It must be float(2<R<5)"
         }
-
     })
 
     const sendButton = document.getElementById("send-button");

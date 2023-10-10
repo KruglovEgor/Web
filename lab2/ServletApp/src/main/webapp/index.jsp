@@ -21,6 +21,7 @@
 
     <script src="scripts/imgScripts/imgClick.js"></script>
     <script src="scripts/imgScripts/drawPoint.js"></script>
+    <script src="scripts/imgScripts/infoAboutPoints.js"></script>
 
     <script src="scripts/validation/clickValidator.js"></script>
     <script src="scripts/validation/inputValidator.js"></script>
@@ -74,6 +75,7 @@
                 <svg id="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></svg>
                 <img src="img/Lab2.svg" alt="Graphic" id="graphic" style="width: 100%;">
             </div>
+            <div id="info-box"></div>
         </td>
         <td>
             <label for="r-graphic">R of graphic:</label>

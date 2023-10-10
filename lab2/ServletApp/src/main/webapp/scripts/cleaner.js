@@ -25,9 +25,11 @@ function cleanTable(){
 
 
 function clenPoints(){
-    const pointsOnGraphic = overlay.querySelectorAll("circle");
-    for(const point of pointsOnGraphic){
+    for(const point of circles){
+        point.removeEventListener("mouseenter", showInfo);
+        point.removeEventListener("mouseleave", hideInfo);
         overlay.removeChild(point);
     }
+    circles = [];
 
 }
