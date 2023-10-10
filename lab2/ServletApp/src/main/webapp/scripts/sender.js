@@ -24,8 +24,13 @@ async function sendValues(x, y, r, type) {
             myHistory.push(json);
             newElementInHistory(json.x, json.y, json.r, json.time, json.executionTime, json.hit);
             points.push([json.x, json.y]);
-            rGraphic.value = rValueInput.value;
-            resizeGraphic(rGraphic.value);
+            if(rGraphic.value === json.x.toString()){
+                drawPoint(json.x, json.y, json.r);
+            }
+            else {
+                rGraphic.value = json.r;
+                resizeGraphic(json.r);
+            }
         }
     }
 

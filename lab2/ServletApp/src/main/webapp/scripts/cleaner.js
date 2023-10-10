@@ -1,6 +1,7 @@
 function cleanSessionAndTable(){
     cleanTable();
     clenPoints();
+    points = [];
     currentPage.textContent = 1;
     lastPage.textContent = 1;
     myHistory = [];
@@ -25,7 +26,6 @@ function cleanTable(){
 
 function clenPoints(){
     const pointsOnGraphic = overlay.querySelectorAll("circle");
-    points = [];
     for(const point of pointsOnGraphic){
         overlay.removeChild(point);
     }

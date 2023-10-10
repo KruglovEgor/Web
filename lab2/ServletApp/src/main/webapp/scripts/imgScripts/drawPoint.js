@@ -25,7 +25,7 @@ function drawPoint(xValue, yValue, rValue){
 function resizeGraphic(r){
     const rValue = parseFloat(r);
     //todo make cleaning (idk why it's not working just by cleanPoints();
-    //clenPoints();
+    clenPoints();
     for (const point of points){
         if(isPointFitsGraphic(point[0], point[1], rValue)){
             console.log(point[0], point[1], rValue);
