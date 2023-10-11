@@ -1,17 +1,18 @@
 
-//todo fix
-function showInfo(point){
-    const info = point.getAttribute("data-info");
-    const x = point.cx;
-    const y = point.cy;
-
-    infoBox.style.left = x + "2%";
-    infoBox.style.top = y;
-    infoBox.textContent = info;
+function showInfo(e){
+    console.log("showed")
+    infoBox.innerText = e.target.getAttribute("data-info");
     infoBox.style.display = "block";
+
+    const x = e.clientX+"px";
+    const y = e.clientY+"px";
+
+    infoBox.style.left = x;
+    infoBox.style.top = y;
 }
 
-//todo fix
+
 function hideInfo(){
+    console.log("hided");
     infoBox.style.display = "none";
 }

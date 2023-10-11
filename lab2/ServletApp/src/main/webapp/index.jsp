@@ -12,23 +12,24 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image" href="img/favicon.ico">
 
-    <script src="scripts/event.js"></script>
-    <script src="scripts/sender.js"></script>
-
-    <script src="scripts/cleaner.js"></script>
     <script src="scripts/historyScripts/history.js"></script>
     <script src="scripts/historyScripts/pageHistory.js"></script>
 
-    <script src="scripts/imgScripts/imgClick.js"></script>
     <script src="scripts/imgScripts/drawPoint.js"></script>
+    <script src="scripts/imgScripts/imgClick.js"></script>
     <script src="scripts/imgScripts/infoAboutPoints.js"></script>
 
     <script src="scripts/validation/clickValidator.js"></script>
     <script src="scripts/validation/inputValidator.js"></script>
     <script src="scripts/validation/validator.js"></script>
 
-    <script src="scripts/onLoad.js"></script>
+
     <script src="scripts/workingWithLocalStorage/saveValuesOnUpdate.js"></script>
+
+    <script src="scripts/cleaner.js"></script>
+    <script src="scripts/event.js"></script>
+    <script src="scripts/sender.js"></script>
+    <script src="scripts/onLoad.js"></script>
 
 </head>
 <body>
@@ -120,6 +121,9 @@
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 myHistory = <%= historyInJson %>;
+                for(let record of myHistory){
+                    points.push([record.x, record.y]);
+                }
             });
         </script>
 </table>

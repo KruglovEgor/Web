@@ -24,7 +24,7 @@ async function sendValues(x, y, r, type) {
             myHistory.push(json);
             newElementInHistory(json.x, json.y, json.r, json.time, json.executionTime, json.hit);
             points.push([json.x, json.y]);
-            if(rGraphic.value === json.x.toString()){
+            if(rGraphic.value === json.r.toString()){
                 drawPoint(json.x, json.y, json.r);
             }
             else {

@@ -140,15 +140,27 @@ header{
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
+    z-index: 3;
+}
+
+#info-box {
+    display: none;
+    position: absolute;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+circle{
+    z-index: 4;
+    pointer-events: visible
 }
 
 
-#info-box {
-    position: absolute;
-    display: none;
-    background-color: #fff;
-    border: 1px solid #000;
-    padding: 5px;
-    z-index: 100;
+circle:hover {
+    cursor: pointer;
 }
