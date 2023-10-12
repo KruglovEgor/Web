@@ -1,136 +1,56 @@
-.column-name{
-    font-size: 20px;
-    font-style: italic;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+
+header {
+    background-color: #333;
+    color: #fff;
     text-align: center;
+    padding: 10px;
 }
 
-
-.input-label {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
+form {
+    margin: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-.bottom-button{
-    margin: 10px auto;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-
-#button-container {
-    display: flex;
-    justify-content: space-between;
-}
-
-#send-button{
-    background-color: green;
-}
-
-#clean-button{
-    background-color: brown;
-}
-
-#send-button:hover {
-    background-color: darkgreen;
-}
-
-#clean-button:hover {
-    background-color: #821d1d;
-}
-
 
 .parameter-name{
     font-size: 25px;
     font-weight: 400;
 }
 
-.green-text{
-    color: green;
-}
-
-.red-text{
-    color: red;
-}
 
 
-header{
-    text-align: center;
-    font-family: sans-serif;
-    color: black;
-    font-size: 20px;
-}
 
-.error{
-    margin-top: 10px;
-    font-size: 15px;
-    color: red;
-}
 
-#server-error{
-    text-align: center;
-    width: 100%;
-}
 
-#counter-container{
-    margin-top: 10px;
-}
-
-.page-count {
-
-    font-size: 16px;
-    font-weight: bold;
-    margin: 0 5px;
-}
-
-#pagination {
-    margin-top: 5px;
-}
-
-#pagination button{
-    background-color: #007BFF;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 12px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#prev-button::before {
-    content: "\2190"; /* Символ стрелочки влево */
-    margin-right: 5px;
-}
-
-#next-button::after {
-    content: "\2192"; /* Символ стрелочки вправо */
-    margin-left: 5px;
-}
-
-#pagination button:hover {
-    background-color: #0056b3;
-}
-
-#graphic {
-    display: block;
-    max-width: 100%;
+#graphic-table {
+    width: 80%;
     height: auto;
-    z-index: 1; /* Установка z-index для <img>, чтобы она оставалась над SVG-слой */
+    margin:  0 auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+#graphic-overlay-column{
+    width: 70%;
 }
 
 #overlay-container {
-    position: relative;
     width: 100%;
-    height: 100%;
+    position: relative;
     overflow: hidden;
-    z-index: 2; /* Установка z-index для контейнера, чтобы он находился над <img> */
+    z-index: 2;
 }
 
 
@@ -140,7 +60,15 @@ header{
     left: 0;
     width: 100%;
     height: 100%;
+    pointer-events: none;
     z-index: 3;
+}
+
+#graphic {
+    width: 100%;
+    height: auto;
+    display: block;
+    z-index: 1;
 }
 
 #info-box {
@@ -155,6 +83,28 @@ header{
     z-index: 1000;
 }
 
+
+
+#r-graphic-column{
+    width: 30%;
+    text-align: center;
+    position: relative;
+}
+label[for="r-graphic"] {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+#r-graphic {
+     width: 100px;
+     padding: 5px;
+     border: 1px solid #ccc;
+     border-radius: 3px;
+ }
+
+
+
+
 circle{
     z-index: 4;
     pointer-events: visible
@@ -163,4 +113,61 @@ circle{
 
 circle:hover {
     cursor: pointer;
+    fill: lawngreen;
+}
+
+
+
+
+
+
+.error{
+    margin-top: 5px;
+    font-size: 15px;
+    color: red;
+}
+
+
+#server-error{
+    text-align: center;
+    width: 100%;
+}
+
+
+
+
+
+.column-name{
+    font-size: 20px;
+    font-style: italic;
+    text-align: center;
+}
+
+
+
+
+
+
+#counter-container{
+    margin-top: 10px;
+}
+
+.page-count {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+
+
+
+
+
+
+.green-text{
+    color: green;
+}
+
+.red-text{
+    color: red;
 }

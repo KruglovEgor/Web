@@ -4,8 +4,8 @@ function showInfo(e){
     infoBox.innerText = e.target.getAttribute("data-info");
     infoBox.style.display = "block";
 
-    const x = e.clientX+"px";
-    const y = e.clientY+"px";
+    const x = e.clientX + window.pageXOffset +"px"
+    const y = e.clientY  + window.pageYOffset + "px";
 
     infoBox.style.left = x;
     infoBox.style.top = y;

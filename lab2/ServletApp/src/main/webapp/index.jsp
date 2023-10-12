@@ -10,6 +10,7 @@
     <meta charset="UTF-8">
     <title>Lab2</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/forButtons.css">
     <link rel="icon" type="image" href="img/favicon.ico">
 
     <script src="scripts/historyScripts/history.js"></script>
@@ -71,14 +72,14 @@
         <td colspan="2"></td>
     </tr>
     <tr>
-        <td width="70%">
-            <div id="overlay-container" style="position: relative; width: 100%; height: 100%;">
-                <svg id="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></svg>
-                <img src="img/Lab2.svg" alt="Graphic" id="graphic" style="width: 100%;">
+        <td id="graphic-overlay-column">
+            <div id="overlay-container">
+                <svg id="overlay"></svg>
+                <img src="img/Lab2.svg" alt="Graphic" id="graphic">
             </div>
             <div id="info-box"></div>
         </td>
-        <td>
+        <td id="r-graphic-column">
             <label for="r-graphic">R of graphic:</label>
             <input type="text" name="r-graphic" id="r-graphic" placeholder="(2; 5)" maxlength="6">
             <div class="error" id="r-graphic-error"></div>
@@ -91,7 +92,7 @@
 
 
 <div id="button-container">
-    <button id="send-button" class="bottom-button"> Check</button>
+        <button id="send-button" class="bottom-button"> Check</button>
     <button id="clean-button" class="bottom-button">Clear</button>
 </div>
 

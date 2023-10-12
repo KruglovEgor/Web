@@ -3,7 +3,6 @@ package server.servlet;
 import server.data.Result;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -13,16 +12,12 @@ import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static server.data.validation.Validator.validate;
 
 
-//@WebServlet(urlPatterns = {"/area-checker"})
 public class AreaCheckServlet extends HttpServlet {
-    String floatRegex = "^-?\\d+\\.?\\d*$";
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long start = System.nanoTime();

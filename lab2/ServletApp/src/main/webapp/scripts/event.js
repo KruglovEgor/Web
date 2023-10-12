@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
         rGraphicError.textContent = "";
         if(validateR(rGraphic.value)){
             resizeGraphic(rGraphic.value);
+            rValueInput.value = rGraphic.value;
         } else {
             rGraphicError.textContent = "There is problem with R. It must be float(2<R<5)"
         }
