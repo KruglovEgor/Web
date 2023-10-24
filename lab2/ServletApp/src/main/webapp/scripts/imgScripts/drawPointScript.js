@@ -3,7 +3,7 @@
 //todo maybe change names of files and directories
 //todo maybe add bundle
 
-function drawPoint(xValue, yValue, rValue){
+function drawPointScript(xValue, yValue, rValue, hit){
     const point = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     const width = graphic.offsetWidth;
     const height = graphic.offsetHeight;
@@ -14,13 +14,17 @@ function drawPoint(xValue, yValue, rValue){
     point.setAttribute("cx", xCircle+"%");
     point.setAttribute("cy", yCircle+"%");
     point.setAttribute("r", radiusCircle.toString());
-    point.setAttribute("fill", "red");
-    point.setAttribute("data-info", "x="+xValue+"\ny="+yValue);
+    if(hit){
+        point.setAttribute("fill", "green");
+    }
+    else {
+        point.setAttribute("fill", "red");
+    }
+    point.setAttribute("data-info", "x="+xValue+"\ny="+yValue+"\nr="+rValue);
 
     overlay.appendChild(point);
     circles.push(point);
     point.addEventListener("mouseover", (e) => {
-        console.log(11);
         showInfo(e);
     });
     point.addEventListener("mouseout",  () =>{
@@ -36,7 +40,7 @@ function resizeGraphic(r){
     for (const point of points){
         console.log(point);
         if(isPointFitsGraphic(point[0], point[1], rValue)){
-            drawPoint(point[0], point[1], rValue);
+            drawPointScript(point[0], point[1], rValue, point[2]);
         }
     }
 }
