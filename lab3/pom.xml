@@ -17,6 +17,17 @@
 
   <dependencies>
 
+<!--    try-->
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-web-api</artifactId>
+      <version>8.0.1</version>
+    </dependency>
+
+
+
+
+
     <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-api</artifactId>
@@ -53,10 +64,19 @@
         <artifactId>maven-war-plugin</artifactId>
         <version>3.4.0</version>
         <configuration>
+
+<!--          <archiveClasses>true</archiveClasses>-->
+<!--          <webResources>-->
+<!--            <resource>-->
+<!--              <directory>${project.build.directory}/${project.build.finalName}/WEB-INF/lib</directory>-->
+<!--              <targetPath>lib</targetPath>-->
+<!--            </resource>-->
+<!--          </webResources>-->
           <archive>
             <manifest>
-              <addClasspath>true</addClasspath>
-              <classpathPrefix>WEB-INF/lib</classpathPrefix>
+<!--              <addClasspath>true</addClasspath>-->
+<!--              <classpathPrefix>lib</classpathPrefix>-->
+                <addClasspath>false</addClasspath>
             </manifest>
           </archive>
         </configuration>
