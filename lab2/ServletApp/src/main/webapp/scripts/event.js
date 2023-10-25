@@ -29,13 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
         checkHitByClick(event);
     })
 
-    graphic.addEventListener("mouseenter", function () {
-        console.log("img entered")
-    })
-    graphic.addEventListener("mouseover", function () {
-        console.log("img over")
-    })
-
     xError = document.getElementById("x-error");
     yError = document.getElementById("y-error");
     rError = document.getElementById("r-error");

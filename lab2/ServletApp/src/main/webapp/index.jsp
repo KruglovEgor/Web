@@ -1,8 +1,6 @@
 <%@ page import="server.data.Result" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="com.google.gson.Gson" %>
-<%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +14,7 @@
     <script src="scripts/historyScripts/history.js"></script>
     <script src="scripts/historyScripts/pageHistory.js"></script>
 
-    <script src="scripts/imgScripts/drawPoint.js"></script>
+    <script src="scripts/imgScripts/drawPointScript.js"></script>
     <script src="scripts/imgScripts/imgClick.js"></script>
     <script src="scripts/imgScripts/infoAboutPoints.js"></script>
 
@@ -123,7 +121,7 @@
             document.addEventListener("DOMContentLoaded", function () {
                 myHistory = <%= historyInJson %>;
                 for(let record of myHistory){
-                    points.push([record.x, record.y]);
+                    points.push([record.x, record.y, record.hit]);
                 }
             });
         </script>

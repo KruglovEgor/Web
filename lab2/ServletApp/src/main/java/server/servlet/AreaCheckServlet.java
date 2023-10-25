@@ -48,7 +48,9 @@ public class AreaCheckServlet extends HttpServlet {
                 httpSession.setAttribute("history", history);
             }
             history.add(result);
-            out.println(result.toJson());
+            req.setAttribute("result", result);
+            req.getRequestDispatcher("/result.jsp").forward(req, resp);
+            //out.println(result.toJson());
         }
         else {
             out.println("There are problems with values! Try to resend packet.");
