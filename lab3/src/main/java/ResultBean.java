@@ -42,6 +42,7 @@ public class ResultBean implements Serializable {
     }
 
     private void loadDB() {
+        connectToDB();
         try {
             entityTransaction.begin();
             resultList = entityManager.createQuery("SELECT d FROM Result d", Result.class).getResultList();
@@ -55,6 +56,7 @@ public class ResultBean implements Serializable {
 
 
     public void addResult() {
+        connectToDB();
         try {
             entityTransaction.begin();
             long startTime = System.nanoTime();
@@ -62,7 +64,7 @@ public class ResultBean implements Serializable {
 
             newResult.setHit(isHit(newResult.getX(), newResult.getY(), newResult.getR()));
             newResult.setExecutionTime((double) (System.nanoTime() - startTime) / 1000);
-            newResult.setCurrentTime(getCurrentTimestamp().toString());
+            newResult.setCurrentTime(getCurrentTimestamp());
             System.out.println("New result " + newResult);
             entityManager.persist(newResult);
             entityTransaction.commit();
@@ -77,6 +79,7 @@ public class ResultBean implements Serializable {
     }
 
     public void clearResults() {
+        connectToDB();
         try {
             entityTransaction.begin();
             entityManager.createQuery("DELETE FROM Result", Result.class).executeUpdate();

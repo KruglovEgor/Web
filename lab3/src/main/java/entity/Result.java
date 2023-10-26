@@ -5,13 +5,16 @@ import lombok.Getter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "record")
 public class Result implements Serializable {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Getter
     @Column(name = "x")
@@ -26,8 +29,8 @@ public class Result implements Serializable {
     private double r;
 
     @Getter
-    @Column(name = "record_time", length = 100)
-    private String currentTime;
+    @Column(columnDefinition = "timestamp without time zone default now()", name = "record_time")
+    private Timestamp currentTime;
 
     @Getter
     @Column(name = "execution_time")
@@ -39,7 +42,7 @@ public class Result implements Serializable {
 
     public Result() {}
 
-    public Result(double x, double y, double r, String currentTime, double executionTime, boolean hit) {
+    public Result(double x, double y, double r, Timestamp currentTime, double executionTime, boolean hit) {
         this.x = x;
         this.y = y;
         this.r = r;
@@ -71,7 +74,7 @@ public class Result implements Serializable {
         this.r = r;
     }
 
-    public void setCurrentTime(String currentTime) {
+    public void setCurrentTime(Timestamp currentTime) {
         this.currentTime = currentTime;
     }
 
