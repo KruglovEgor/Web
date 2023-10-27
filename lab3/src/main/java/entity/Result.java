@@ -40,6 +40,10 @@ public class Result implements Serializable {
     @Column(name = "hit")
     private boolean hit;
 
+    @Getter
+    @Column(name = "type")
+    private Type type;
+
     public Result() {}
 
     public Result(double x, double y, double r, Timestamp currentTime, double executionTime, boolean hit) {
@@ -59,7 +63,8 @@ public class Result implements Serializable {
                 "r: " + r +
                 "time: " + currentTime +
                 "ex_time: " + executionTime +
-                "hit: " + hit +"}";
+                "hit: " + hit +
+                "type" + type + "}";
     }
 
     public void setX(double x) {
@@ -85,4 +90,6 @@ public class Result implements Serializable {
     public void setHit(boolean hit) {
         this.hit = hit;
     }
+
+    public void setType(Type type){this.type = type;}
 }

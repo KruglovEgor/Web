@@ -1,4 +1,5 @@
 import entity.Result;
+import entity.Type;
 import lombok.Getter;
 
 import javax.faces.bean.ManagedBean;
@@ -55,13 +56,13 @@ public class ResultBean implements Serializable {
     }
 
 
-    public void addResult() {
+    public void addResult(Type type) {
         connectToDB();
         try {
             entityTransaction.begin();
             long startTime = System.nanoTime();
             //todo add check
-
+            newResult.setType(type);
             newResult.setHit(isHit(newResult.getX(), newResult.getY(), newResult.getR()));
             newResult.setExecutionTime((double) (System.nanoTime() - startTime) / 1000);
             newResult.setCurrentTime(getCurrentTimestamp());

@@ -34,7 +34,7 @@
             <label>r:</label>
             <ace:sliderEntry id="r-value" min="1" max="4" stepPercent="16.66" value="#{resultBean.newResult.r}"/>
         </div>
-        <h:commandButton value="Submit" action="#{resultBean.addResult()}"></h:commandButton>
+        <h:commandButton value="Submit" action="#{resultBean.addResult('SUBMIT')}"></h:commandButton>
     </h:form>
 
     <div class="container" id="graphic-container">
