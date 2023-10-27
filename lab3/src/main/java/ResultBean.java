@@ -1,5 +1,6 @@
 import entity.Result;
 import entity.Type;
+import helping.ValueValidator;
 import lombok.Getter;
 
 import javax.faces.bean.ManagedBean;
@@ -61,14 +62,17 @@ public class ResultBean implements Serializable {
         try {
             entityTransaction.begin();
             long startTime = System.nanoTime();
+            ValueValidator validator = new ValueValidator();
             //todo add check
-            newResult.setType(type);
-            newResult.setHit(isHit(newResult.getX(), newResult.getY(), newResult.getR()));
-            newResult.setExecutionTime((double) (System.nanoTime() - startTime) / 1000);
-            newResult.setCurrentTime(getCurrentTimestamp());
-            System.out.println("New result " + newResult);
-            entityManager.persist(newResult);
-            entityTransaction.commit();
+            if(validator.validate(newResult.getX(), newResult.getY(), newResult.getR(), newResult.getType())){
+                newResult.setType(type);
+                newResult.setHit(isHit(newResult.getX(), newResult.getY(), newResult.getR()));
+                newResult.setExecutionTime((double) (System.nanoTime() - startTime) / 1000);
+                newResult.setCurrentTime(getCurrentTimestamp());
+                System.out.println("New result " + newResult);
+                entityManager.persist(newResult);
+                entityTransaction.commit();   
+            }
 
             // Очистка newResult для следующего ввода
             newResult = new Result();
