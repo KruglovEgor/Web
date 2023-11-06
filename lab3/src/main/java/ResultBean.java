@@ -63,12 +63,12 @@ public class ResultBean implements Serializable {
             entityTransaction.begin();
             long startTime = System.nanoTime();
             ValueValidator validator = new ValueValidator();
-            //todo add check
+            newResult.setType(type);
             if(validator.validate(newResult.getX(), newResult.getY(), newResult.getR(), newResult.getType())){
-                newResult.setType(type);
                 newResult.setHit(isHit(newResult.getX(), newResult.getY(), newResult.getR()));
                 newResult.setExecutionTime((double) (System.nanoTime() - startTime) / 1000);
                 newResult.setCurrentTime(getCurrentTimestamp());
+                resultList.add(newResult);
                 System.out.println("New result " + newResult);
                 entityManager.persist(newResult);
                 entityTransaction.commit();   
@@ -104,11 +104,5 @@ public class ResultBean implements Serializable {
     public void setNewResult(Result newResult){
         this.newResult = newResult;
     }
-
-
-
-
-
-
 
 }

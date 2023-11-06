@@ -11,7 +11,7 @@
     <title>Main</title>
 </h:head>
 <h:body>
-    <h:form>
+    <h:form id="input-form">
         <div class="container" id="x-container">
             <label>x:</label>
             <h:selectOneRadio id="x-value" value="#{resultBean.newResult.x}" required="true">
@@ -28,13 +28,14 @@
         </div>
         <div class="container" id="y-container">
             <label>y:</label>
-            <h:inputText id="y-value" placeholder="(-5; 3)" value="#{resultBean.newResult.y}" required="true"></h:inputText>
+            <h:inputText id="y-value" placeholder="(-5; 3)" value="#{resultBean.newResult.y}" required="true"> </h:inputText>
         </div>
         <div class="container" id="r-container">
             <label>r:</label>
-            <ace:sliderEntry id="r-value" min="1" max="4" stepPercent="16.66" value="#{resultBean.newResult.r}"/>
+            <ace:sliderEntry id="r-value" min="1" max="4" stepPercent="16.66666666666666666" value="#{resultBean.newResult.r}"/>
         </div>
-        <h:commandButton value="Submit" action="#{resultBean.addResult('SUBMIT')}"></h:commandButton>
+        <h:commandButton value="Submit" action="#{resultBean.addResult('SUBMIT')}" update="history">
+        </h:commandButton>
     </h:form>
 
     <div class="container" id="graphic-container">
@@ -42,7 +43,7 @@
         <img src="resources/img/Lab3.svg" alt="Graphic" id="graphic"> </img>
     </div>
 
-    <div class="container" id="table-container">
+    <h:panelGroup class="container" id="history">
         <table border="1">
             <thead>
             <tr>
@@ -67,7 +68,7 @@
             </ui:repeat>
             </tbody>
         </table>
-    </div>
+    </h:panelGroup>
 
 </h:body>
 </html>

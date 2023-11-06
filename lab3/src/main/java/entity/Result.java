@@ -26,7 +26,7 @@ public class Result implements Serializable {
 
     @Getter
     @Column(name = "r")
-    private double r;
+    private double r = 1.0;
 
     @Getter
     @Column(columnDefinition = "timestamp without time zone default now()", name = "record_time")
@@ -57,14 +57,14 @@ public class Result implements Serializable {
 
     @Override
     public String toString(){
-        return "{id: " + id +
-                "x: " + x +
-                "y: " + y +
-                "r: " + r +
-                "time: " + currentTime +
-                "ex_time: " + executionTime +
-                "hit: " + hit +
-                "type" + type + "}";
+        return "{id: " + id + ", " +
+                "x: " + x + ", " +
+                "y: " + y + ", " +
+                "r: " + r + ", " +
+                "time: " + currentTime + ", " +
+                "ex_time: " + executionTime + ", " +
+                "hit: " + hit + ", " +
+                "type: " + type + "}";
     }
 
     public void setX(double x) {

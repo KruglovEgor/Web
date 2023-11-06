@@ -11,7 +11,18 @@ public class ValueValidator {
 
 
     public boolean validate(double x, double y, double r, Type type){
-        return true;
+        System.out.println("type: " + type);
+        if(type == Type.SUBMIT){
+            System.out.println("Submit");
+            System.out.println(x + " " + validateSubmitX(x));
+            System.out.println(y + " " + validateSubmitY(y));
+            System.out.println(r + " " + validateSubmitR(r));
+            return validateSubmit(x, y, r);
+        }
+        else if(type == Type.CLICK){
+            return validateClick(x, y, r);
+        }
+        return false;
     }
 
     private boolean validateSubmit(double x, double y, double r){
@@ -19,7 +30,12 @@ public class ValueValidator {
     }
 
     private boolean validateSubmitX(double x){
-        return Arrays.asList(xValues).contains(x);
+        for(double value : xValues){
+            if(value == x){
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean validateSubmitY(double y){
