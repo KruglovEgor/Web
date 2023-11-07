@@ -8,6 +8,7 @@
 >
 <h:head>
     <h:outputStylesheet library="css" name="main.css"/>
+    <h:outputScript library="js" name="updateShowR.js"/>
     <title>Main</title>
 </h:head>
 <h:body>
@@ -32,19 +33,24 @@
         </div>
         <div class="container" id="r-container">
             <label>r:</label>
-            <ace:sliderEntry id="r-value" min="1" max="4" stepPercent="16.66666666666666666" value="#{resultBean.newResult.r}"/>
+            <ace:sliderEntry id="r-value" min="1" max="4" stepPercent="16.66666666666666666" value="#{resultBean.newResult.r}" onSlideEnd="updateShowR()"/>
+            <label id="show-r-value">1</label>
         </div>
         <h:commandButton value="Submit" action="#{resultBean.addResult('SUBMIT')}" update="history">
         </h:commandButton>
     </h:form>
 
-    <div class="container" id="graphic-container">
-        <svg xmlns="http://www.w3.org/2000/svg" id="overlay"></svg>
-        <img src="resources/img/Lab3.svg" alt="Graphic" id="graphic"> </img>
-    </div>
+    <h:panelGroup>
+        <div id="graphic-container">
+            <svg xmlns="http://www.w3.org/2000/svg" id="overlay"> </svg>
+            <img src="resources/img/Lab3.svg" alt="Graphic" id="graphic"> </img>
+        </div>
+    </h:panelGroup>
+    <div id="info-box"> </div>
 
-    <h:panelGroup class="container" id="history">
-        <table border="1">
+
+    <h:panelGroup id="history">
+        <table>
             <thead>
             <tr>
                 <th>x</th>
@@ -69,6 +75,7 @@
             </tbody>
         </table>
     </h:panelGroup>
+
 
 </h:body>
 </html>
