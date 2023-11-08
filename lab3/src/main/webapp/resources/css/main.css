@@ -31,21 +31,26 @@ label {
     margin-right: 10px;
 }
 
-/* Стили для кнопки Submit */
-input [submit]{
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: black;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin: 10px 0;
+
+#graphic-table {
+    width: 80%;
+    max-width: 1000px;
+    height: auto;
+    margin:  0 auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+#graphic-overlay-column{
+    width: 70%;
 }
 
 /* Стили для графика и таблицы истории */
 #graphic-container {
-    width: 60%;
-    max-width: 600px;
+    width: 100%;
     background-color: white;
     text-align: center;
     position: relative;
@@ -71,11 +76,23 @@ input [submit]{
     z-index: 1;
 }
 
+#r-graphic-column{
+    width: 30%;
+    text-align: center;
+    position: relative;
+}
+
 #history {
     background-color: white;
     border: 1px solid black;
     margin: 10px;
     border-collapse: collapse;
+}
+
+label[for="r-graphic"] {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
 /* Стили для таблицы истории */

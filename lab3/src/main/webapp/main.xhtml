@@ -8,7 +8,8 @@
 >
 <h:head>
     <h:outputStylesheet library="css" name="main.css"/>
-    <h:outputScript library="js" name="updateShowR.js"/>
+    <h:outputScript library="js" name="updateR.js"/>
+    <h:outputScript library="js" name="pointHandler.js"/>
     <title>Main</title>
 </h:head>
 <h:body>
@@ -33,20 +34,35 @@
         </div>
         <div class="container" id="r-container">
             <label>r:</label>
-            <ace:sliderEntry id="r-value" min="1" max="4" stepPercent="16.66666666666666666" value="#{resultBean.newResult.r}" onSlideEnd="updateShowR()"/>
+            <ace:sliderEntry id="r-value" min="1" max="4" stepPercent="16.66666666666666666" value="#{resultBean.newResult.r}" onSlideEnd="updateR()"/>
             <label id="show-r-value">1</label>
         </div>
         <h:commandButton value="Submit" action="#{resultBean.addResult('SUBMIT')}" update="history">
+<!--            <f:ajax execute="addNewPoint()" > </f:ajax>-->
+            <f:ajax execute="input-form"> </f:ajax>
         </h:commandButton>
     </h:form>
 
     <h:panelGroup>
-        <div id="graphic-container">
-            <svg xmlns="http://www.w3.org/2000/svg" id="overlay"> </svg>
-            <img src="resources/img/Lab3.svg" alt="Graphic" id="graphic"> </img>
-        </div>
+    <table id="graphic-table">
+        <tr>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td id="graphic-overlay-column">
+                <div id="graphic-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="overlay"> </svg>
+                    <img src="resources/img/Lab3.svg" alt="Graphic" id="graphic"> </img>
+                </div>
+                <div id="info-box"> </div>
+            </td>
+            <td id="r-graphic-column">
+                <label for="r-graphic">R of graphic:</label>
+                <ace:sliderEntry id="r-graphic" min="1" max="4" stepPercent="16.66666666666666666" value="1"/>
+            </td>
+        </tr>
+    </table>
     </h:panelGroup>
-    <div id="info-box"> </div>
 
 
     <h:panelGroup id="history">
@@ -61,7 +77,7 @@
                 <th>hit</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="history-table">
             <ui:repeat value="#{resultBean.resultList}" var="result">
                 <tr>
                     <td>#{result.x}</td>
