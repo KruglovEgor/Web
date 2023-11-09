@@ -8,11 +8,16 @@
 >
 <h:head>
     <h:outputStylesheet library="css" name="main.css"/>
-    <h:outputScript library="js" name="updateR.js"/>
+
+    <h:outputScript library="js" name="cleaner.js"/>
+    <h:outputScript library="js" name="click.js"/>
+    <h:outputScript library="js" name="infoAboutPoints.js"/>
     <h:outputScript library="js" name="pointHandler.js"/>
+    <h:outputScript library="js" name="updateR.js"/>
     <title>Main</title>
 </h:head>
 <h:body>
+    <h:link outcome="start.xhtml" value="Start page" />
     <h:form id="input-form">
         <div class="container" id="x-container">
             <label>x:</label>
@@ -30,23 +35,32 @@
         </div>
         <div class="container" id="y-container">
             <label>y:</label>
-            <h:inputText id="y-value" placeholder="(-5; 3)" value="#{resultBean.newResult.y}" required="true"> </h:inputText>
+            <h:inputText id="y-value" placeholder="(-5; 3)" value="#{resultBean.newResult.y}" required="true" maxlength="6"> </h:inputText>
         </div>
         <div class="container" id="r-container">
             <label>r:</label>
             <ace:sliderEntry id="r-value" min="1" max="4" stepPercent="16.66666666666666666" value="#{resultBean.newResult.r}" onSlideEnd="updateR()"/>
             <label id="show-r-value">1</label>
         </div>
-        <h:commandButton value="Submit" action="#{resultBean.addResult('SUBMIT')}" update="history">
-<!--            <f:ajax execute="addNewPoint()" > </f:ajax>-->
-            <f:ajax execute="input-form"> </f:ajax>
+        <h:commandButton value="Submit" action="#{resultBean.addResult('SUBMIT')}" update="history" id="submit-button">
+        </h:commandButton>
+        <h:commandButton value="Clear" action="#{resultBean.clearResults()}" update="history" id="clear-button">
         </h:commandButton>
     </h:form>
+
+    <h:form id="click-form" style="display: none">
+        <h:inputText id="x-click-value" value="#{resultBean.newResult.x}" required="true" maxlength="6"> </h:inputText>
+        <h:inputText id="y-click-value" value="#{resultBean.newResult.y}" required="true" maxlength="6"> </h:inputText>
+        <h:inputText id="r-click-value" value="#{resultBean.newResult.r}" required="true" maxlength="6"> </h:inputText>
+        <h:commandButton value="Submit" action="#{resultBean.addResult('CLICK')}" update="history" id="submit-click-button">
+        </h:commandButton>
+    </h:form>
+
 
     <h:panelGroup>
     <table id="graphic-table">
         <tr>
-            <td colspan="2"></td>
+            <td colspan="2"> </td>
         </tr>
         <tr>
             <td id="graphic-overlay-column">
@@ -57,8 +71,8 @@
                 <div id="info-box"> </div>
             </td>
             <td id="r-graphic-column">
-                <label for="r-graphic">R of graphic:</label>
-                <ace:sliderEntry id="r-graphic" min="1" max="4" stepPercent="16.66666666666666666" value="1"/>
+                <label>R of graphic:</label>
+                <label id="show-r-graphic">1</label>
             </td>
         </tr>
     </table>
@@ -73,7 +87,7 @@
                 <th>y</th>
                 <th>r</th>
                 <th>time</th>
-                <th>ex_time</th>
+                <th>execution time</th>
                 <th>hit</th>
             </tr>
             </thead>

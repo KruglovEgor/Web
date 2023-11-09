@@ -141,3 +141,14 @@ th, td {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
+
+
+circle{
+    z-index: 4;
+    pointer-events: visible
+}
+
+
+circle:hover {
+    cursor: pointer;
+}

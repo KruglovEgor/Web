@@ -77,7 +77,6 @@ public class ResultBean implements Serializable {
             // Очистка newResult для следующего ввода
             newResult = new Result();
         } catch (Exception e){
-
             System.out.println("Result adding error: " + e.getMessage());
         }
 
@@ -94,8 +93,8 @@ public class ResultBean implements Serializable {
             entityManager.close();
         } catch (Exception e) {
             System.out.println("Results cannot be cleaned: " + e.getMessage());
-
         }
+        newResult = new Result();
     }
 
     public void setResultList(List<Result> resultList){

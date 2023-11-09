@@ -49,6 +49,12 @@ public class ValueValidator {
 
 
     private boolean validateClick(double x, double y, double r){
+        System.out.println("validateR: "+validateClickR(r));
+        System.out.println("validateX: "+validateClickX(x, r));
+        System.out.println("validateY: "+validateClickY(y, r));
+        System.out.println("x " + x);
+        System.out.println("y " + y);
+        System.out.println("r " + r);
         return validateClickR(r) && validateClickX(x, r) && validateClickY(y, r);
     }
 

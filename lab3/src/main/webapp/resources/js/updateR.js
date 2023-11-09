@@ -1,24 +1,28 @@
 let showR;
 let slider;
+let showRGraphic;
+let rClickInput;
 
 document.addEventListener("DOMContentLoaded", function () {
     showR = document.getElementById("show-r-value");
     slider = document.getElementById("input-form:r-value_hidden");
+    showRGraphic = document.getElementById("show-r-graphic");
+    rClickInput = document.getElementById("click-form:r-click-value");
+    updateR();
 });
 
 function updateR(){
     showR.innerHTML = slider.value;
-
+    showRGraphic.innerHTML = slider.value;
+    resizeGraphic(slider.value);
+    rClickInput.value = slider.value;
 }
 
 
-function resizeGraphic(r){
-    const rValue = parseFloat(r);
-    cleanPoints();
-    for (const point of points){
-        console.log(point);
-        if(isPointFitsGraphic(point[0], point[1], rValue)){
-            drawPointScript(point[0], point[1], rValue, point[2]);
-        }
-    }
+function updateSlider(){
+    console.log(parseFloat(showR.textContent));
+    slider.value = parseFloat(showR.textContent);
+    console.log(slider.value);
+    rClickInput.value = parseFloat(showR.textContent);
+    console.log(rClickInput.value);
 }
