@@ -36,6 +36,7 @@
         <div class="container" id="y-container">
             <label>y:</label>
             <h:inputText id="y-value" placeholder="(-5; 3)" value="#{resultBean.newResult.y}" required="true" maxlength="6"> </h:inputText>
+            <label class="error" id="y-error"> </label>
         </div>
         <div class="container" id="r-container">
             <label>r:</label>
@@ -44,9 +45,13 @@
         </div>
         <h:commandButton value="Submit" action="#{resultBean.addResult('SUBMIT')}" update="history" id="submit-button">
         </h:commandButton>
+    </h:form>
+
+    <h:form id="clear-form">
         <h:commandButton value="Clear" action="#{resultBean.clearResults()}" update="history" id="clear-button">
         </h:commandButton>
     </h:form>
+
 
     <h:form id="click-form" style="display: none">
         <h:inputText id="x-click-value" value="#{resultBean.newResult.x}" required="true" maxlength="6"> </h:inputText>

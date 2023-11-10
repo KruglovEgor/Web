@@ -1,6 +1,6 @@
 let cleatButton;
 document.addEventListener("DOMContentLoaded", function () {
-    cleatButton = document.getElementById("input-form:clear-button");
+    cleatButton = document.getElementById("clear-form:clear-button");
     cleatButton.addEventListener("click", function () {
         cleanAll();
         updateSlider();
@@ -22,4 +22,5 @@ function cleanCircles(){
 function cleanAll(){
     cleanCircles();
     points = [];
+    yError.textContent = "";
 }

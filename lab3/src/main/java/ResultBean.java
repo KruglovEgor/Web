@@ -84,6 +84,7 @@ public class ResultBean implements Serializable {
 
     public void clearResults() {
         connectToDB();
+        newResult = new Result();
         try {
             entityTransaction.begin();
             entityManager.createQuery("DELETE FROM Result", Result.class).executeUpdate();
@@ -94,7 +95,6 @@ public class ResultBean implements Serializable {
         } catch (Exception e) {
             System.out.println("Results cannot be cleaned: " + e.getMessage());
         }
-        newResult = new Result();
     }
 
     public void setResultList(List<Result> resultList){
