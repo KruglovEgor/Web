@@ -20,9 +20,6 @@ function updateR(){
 
 
 function updateSlider(){
-    console.log(parseFloat(showR.textContent));
     slider.value = parseFloat(showR.textContent);
-    console.log(slider.value);
     rClickInput.value = parseFloat(showR.textContent);
-    console.log(rClickInput.value);
 }
