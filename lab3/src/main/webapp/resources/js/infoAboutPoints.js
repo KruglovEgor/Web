@@ -10,10 +10,26 @@ function showInfo(e){
     const x = e.target.getAttribute("cx");
     const y = e.target.getAttribute("cy");
 
-    //todo пофиксить если совсем справа или снизу то невидно
+    const xPercentage = parseFloat(x);
+    const yPercentage = parseFloat(y);
 
-    infoBox.style.left = x;
-    infoBox.style.top = y;
+    console.log(x, xPercentage);
+    console.log(y, yPercentage);
+    console.log(infoBox.offsetWidth, graphic.width, infoBox/graphic * 100)
+
+    if(xPercentage > 50){
+        infoBox.style.left = xPercentage - infoBox.offsetWidth/graphic.width * 100 + "%";
+    }
+    else {
+        infoBox.style.left = x;
+    }
+
+    if(yPercentage > 50){
+        infoBox.style.top = yPercentage - infoBox.offsetHeight/graphic.height * 100 + "%";
+    }
+    else {
+        infoBox.style.top = y;
+    }
 }
 
 

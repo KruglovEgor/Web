@@ -13,6 +13,8 @@ let xInput;
 let yInput;
 let rInput;
 
+let yError;
+
 document.addEventListener("DOMContentLoaded", function () {
     table = document.getElementById("history-table");
     overlay = document.getElementById("overlay");
@@ -31,6 +33,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const r = rInput.textContent;
         addPoint(x, y, r);
     })
+
+    yError = document.getElementById("y-error");
 });
 
 
@@ -106,11 +110,18 @@ function drawPoint(xValue, yValue, rValue){
 function validateY(y){
     if (floatRegex.test(y)) {
         const yFloat = parseFloat(y);
-        return -5<yFloat && yFloat<3;
+        if(-5<yFloat && yFloat<3){
+            yError.textContent = "";
+            return true;
+        }
+        else {
+            yError.textContent = "Y must be in (-5;3)!";
+            return false;
+        }
     }
-    else {
-        return false;
-    }
+    yError.textContent = "Y must be float!";
+    return false;
+
 }
 
 
@@ -121,10 +132,6 @@ function addPoint(x, y, r){
         if(isPointFitsGraphic(x, y, rValue)){
             drawPoint(x, y, rValue);
         }
-    }
-    else {
-        //todo что-то с еррором
-        console.log("y-error");
     }
 }
 
