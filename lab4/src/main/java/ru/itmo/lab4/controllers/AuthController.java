@@ -1,6 +1,7 @@
 package ru.itmo.lab4.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +23,10 @@ public class AuthController {
         return "auth";
     }
 
-//    @GetMapping("/signin")
-//    public String showSignInPage() {
-//        return "signin";
-//    }
+    @GetMapping("/signin")
+    public String showSignInPage() {
+        return "signin";
+    }
 
     @GetMapping("/register")
     public String showRegisterPage(Model model) {
@@ -33,17 +34,20 @@ public class AuthController {
         return "register";
     }
 
-//todo this thing
-//    @PostMapping("/signin")
-//    public String signIn(){
-//        return "redirect:/start";
-//    }
+    @PostMapping("/signin")
+    public String signIn(){
+        return "redirect:/start";
+    }
 
 
     @PostMapping("/register")
     public String register(User user, Map<String, Object> model) {
 
         User userFromDB = userRepository.findByUsername(user.getUsername());
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
 
         if(userFromDB != null){
             model.put("message", "User exists!");

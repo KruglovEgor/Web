@@ -7,6 +7,9 @@
 </head>
 <body>
     <h1>Start page</h1>
+    <p>
+        Welcome <b>[[${#request.userPrincipal.principal.username}]]</b>
+    </p>
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Sign Out">
     </form>

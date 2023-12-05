@@ -6,7 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 import ru.itmo.lab4.models.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    //todo finish navsyakiy
-    @Query("Select ")
+    //todo check
+
+    @Query("SELECT u FROM User u WHERE u.username = ?1")
     User findByUsername(String username);
 }
